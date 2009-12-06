@@ -8,8 +8,8 @@
 
 #include "skel_edge.h"
 #include "skel_node.h"
+#include <QGraphicsScene>
 
-#include <QtGui>
 
 /**
    Skeleton is a tree

@@ -10,23 +10,23 @@ Skeleton::Skeleton()
 
 void Skeleton::make_object()
 {
-  Skel_Edge *bone1=new Skel_Edge(&origin,10);
+  Skel_Edge *head=new Skel_Edge(&origin,20,-90);
+  head->add_image("head.png");
+  Skel_Edge *l_arm1=new Skel_Edge(&origin,30,-180);
+  Skel_Edge *l_arm2=new Skel_Edge(l_arm1,40,-150);
+  Skel_Edge *r_arm1=new Skel_Edge(&origin,30,0);
+  Skel_Edge *r_arm2=new Skel_Edge(r_arm1,40,-30);
+
+  Skel_Edge *body=new Skel_Edge(&origin,50,90);
+  Skel_Edge *l_leg1=new Skel_Edge(body,40,120);
+  Skel_Edge *l_leg2=new Skel_Edge(l_leg1,50,90);
+  Skel_Edge *r_leg1=new Skel_Edge(body,40,60);
+  Skel_Edge *r_leg2=new Skel_Edge(r_leg1,50,90);
+
 }
 
 
 void Skeleton::draw(QGraphicsScene *scene)
 {
-  //  QRect rectangle(10, 10, 100, 50);
-  //scene->addRect(rectangle);
-  QPen pen(Qt::blue, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-  /*QLine ligne(50, 50, 200, 200);
-  scene->addLine(ligne, pen);
-  std::cout<<"Draw skel"<<std::endl;
-  */
-  std::list<Skel_Edge*>::iterator it;
-  for( it = origin.from_of()->begin(); it != origin.from_of()->end(); ++it ) {
-    QLine ligne((*it)->from()->x(),(*it)->from()->y(),(*it)->to()->x(),(*it)->to()->y());
-    scene->addLine(ligne, pen);
-    std::cout<<"Add on bone..."<<std::endl;
-  }
+  origin.draw_recursive(scene);
 }

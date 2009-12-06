@@ -1,7 +1,8 @@
-* Dessiner récursivement dans Skel_Edge
+* quand on déplace un point, choix si ça affecte les descendants ou pas
 * Lire un fichier XML avec le Skeleton
 * Pouvoir sélectionner un Skel_Node à la souris
 * Répercuter les transfos sur la suite de l'arbre
+* Gérer le Z ?
 * Enregister des positions-clé
 * Jouer les animations
 * Enregistrer les intervalles

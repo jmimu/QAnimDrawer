@@ -5,6 +5,7 @@
   Skel_Node : an node of the skel graph
   **/
 
+#include <QGraphicsScene>
 #include <list>
 
 class Skel_Edge;
@@ -19,6 +20,8 @@ public:
   double y(){return m_y;}
   void add_edge_from(Skel_Edge *edge){m_from_of.push_back(edge);}
   std::list<Skel_Edge *> * from_of(){return &m_from_of;}
+  void draw_recursive(QGraphicsScene *scene);
+
 
 protected:
   double m_x,m_y;

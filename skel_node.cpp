@@ -6,8 +6,8 @@
 #include <math.h>
 #define PI 3.14159
 
-Skel_Node::Skel_Node(double x,double y)
-  : m_x(x),m_y(y),m_from_of()
+Skel_Node::Skel_Node(double x,double y,Skel_Edge *edge)
+  : m_x(x),m_y(y),m_from_of(),m_to_of(edge)
 {
 }
 

@@ -13,7 +13,7 @@ class Skel_Edge;
 class Skel_Node
 {
 public:
-  Skel_Node(double x,double y);
+  Skel_Node(double x,double y,Skel_Edge *edge);
   void set_x(double x){m_x=x;}
   void set_y(double y){m_y=y;}
   double x(){return m_x;}
@@ -22,11 +22,13 @@ public:
   std::list<Skel_Edge *> * from_of(){return &m_from_of;}
   void draw_recursive(QGraphicsScene *scene);
 
+  Skel_Edge * to_of(){return m_to_of;}
 
 protected:
   double m_x,m_y;
   double m_previous_x,m_previous_y;
   std::list<Skel_Edge *> m_from_of;
+  Skel_Edge * m_to_of;
 };
 
 #endif // SKEL_NODE_H

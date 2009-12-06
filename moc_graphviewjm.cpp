@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'graphviewjm.h'
 **
-** Created: Sun Dec 6 19:10:24 2009
+** Created: Sun Dec 6 20:45:34 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.2)
 **
 ** WARNING! All changes made in this file will be lost!

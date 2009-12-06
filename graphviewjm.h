@@ -6,14 +6,13 @@
 
 class GraphViewJM: public QGraphicsView
 {
-	Q_OBJECT
-		
-	public:
-		GraphViewJM(QGraphicsScene * scene, QWidget * parent = 0);
-	public slots:
-		void ask_shot();
-	
-	private:
+Q_OBJECT
+    
+ public:
+  GraphViewJM(QGraphicsScene * scene, QWidget * parent = 0);
+ public slots:
+  void ask_shot();
+ private:
 
 		
 };

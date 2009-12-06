@@ -6,7 +6,7 @@
 Window::Window()
   : skel()
 {
-  scene = new QGraphicsScene();
+  scene = new GraphSceneJM();
   graph_view = new GraphViewJM(scene);
   m_shotbutton = new QPushButton("Shot", this);
 

@@ -24,3 +24,4 @@ void GraphViewJM::ask_shot()
     delete pngPainter;
     delete image;
 }
+

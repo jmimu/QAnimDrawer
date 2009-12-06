@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include <QGraphicsScene>
+#include "graphscenejm.h"
 #include "graphviewjm.h"
 #include "skeleton.h"
 
@@ -16,7 +16,7 @@ public:
 
 private:
     QPushButton *m_shotbutton;
-    QGraphicsScene *scene;
+    GraphSceneJM *scene;
     GraphViewJM *graph_view;
     Skeleton skel;
 

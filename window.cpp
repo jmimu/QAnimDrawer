@@ -16,7 +16,7 @@ Window::Window()
 
   setLayout(mainLayout);
   
-  setWindowTitle(tr("FreeAnimDrawer"));
+  setWindowTitle(tr("QAnimDrawer"));
   QObject::connect(m_shotbutton, SIGNAL(clicked()), graph_view, SLOT(ask_shot()));
 
   skel.draw(scene);

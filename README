@@ -1,0 +1,7 @@
+QAnimDrawer
+
+Compil :
+	qmake
+	make
+	./qanimdrawer
+

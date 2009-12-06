@@ -19,11 +19,12 @@ public:
   Skel_Node * to(){return m_to;}
   Skel_Edge * previous(){return m_previous;}
   std::list<Skel_Edge *> * next(){return &m_next;}
-  bool add_image(QString filename);
+  bool add_image(QString filename,bool flipY=false);
   bool got_image(){return m_got_image;}
   QPixmap * image(){if (m_got_image) return &m_image; else return NULL;}
   double orientation(){return m_orientation;}
   double length(){return m_length;}
+  int flipY_img(){return m_flipY_img;}
 protected:
   double m_orientation;
   double m_length;
@@ -35,6 +36,7 @@ protected:
   std::list <Skel_Edge *> m_next;
   bool m_got_image;
   QPixmap m_image;
+  int m_flipY_img;
 
   void calc_to();
 };

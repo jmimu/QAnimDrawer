@@ -48,10 +48,11 @@ void Skel_Node::draw_recursive(QGraphicsScene *scene)
       double decalX=-(*it)->image()->height();
       double angle=(*it)->orientation()*PI/180.;
       double scaleX=(*it)->length()/((*it)->image()->width() - (*it)->image()->height()*2);
+      double scaleY=(*it)->flipY_img();
       item->rotate((*it)->orientation());
-      item->scale(scaleX,1.0);
-      item->moveBy(decalY*sin(-angle)+scaleX*decalX*cos(angle) + (*it)->from()->x(),
-		   decalY*cos(-angle)+scaleX*decalX*sin(angle) + (*it)->from()->y());
+      item->scale(scaleX,scaleY);
+      item->moveBy(scaleY*decalY*sin(-angle)+scaleX*decalX*cos(angle) + (*it)->from()->x(),
+		   scaleY*decalY*cos(-angle)+scaleX*decalX*sin(angle) + (*it)->from()->y());
 
       std::cout<<"pic : "<<(*it)->from()->x()<<"  "<<(*it)->from()->y()<<"  "<<(*it)->orientation()<<std::endl;
 

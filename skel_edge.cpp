@@ -29,9 +29,13 @@ void Skel_Edge::calc_to()
   m_to->set_y(m_from->y()+m_length*sin(m_orientation*PI/180.));
 }
 
-bool Skel_Edge::add_image(QString filename)
+bool Skel_Edge::add_image(QString filename,bool flipY)
 {
   m_got_image=false;
   m_got_image=m_image.load(filename, 0, Qt::AutoColor);
+
+  if (flipY) m_flipY_img=-1;
+  else m_flipY_img=1; 
+
   return m_got_image;
 }

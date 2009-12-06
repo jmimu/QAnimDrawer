@@ -4,9 +4,10 @@
 
 //! [0]
 Window::Window()
+  : skel()
 {
-  graph_view = new GraphViewJM;
-  scene = new QGraphicsScene(graph_view);
+  scene = new QGraphicsScene();
+  graph_view = new GraphViewJM(scene);
   m_shotbutton = new QPushButton("Shot", this);
 
   QHBoxLayout *mainLayout = new QHBoxLayout;
@@ -18,9 +19,9 @@ Window::Window()
   setWindowTitle(tr("FreeAnimDrawer"));
   QObject::connect(m_shotbutton, SIGNAL(clicked()), graph_view, SLOT(ask_shot()));
 
-
+  skel.draw(scene);
 }
-//! [1]
+
 
 
 

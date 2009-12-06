@@ -3,16 +3,18 @@
 
 #include <QGraphicsView>
 
+
 class GraphViewJM: public QGraphicsView
 {
 	Q_OBJECT
 		
 	public:
-		GraphViewJM(QWidget * parent = 0);
+		GraphViewJM(QGraphicsScene * scene, QWidget * parent = 0);
 	public slots:
 		void ask_shot();
 	
 	private:
+
 		
 };
 

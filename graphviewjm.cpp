@@ -3,10 +3,10 @@
 #include <QtGui>
 #include <iostream>
 
-GraphViewJM::GraphViewJM(QWidget * parent)
-	: QGraphicsView(parent)
+GraphViewJM::GraphViewJM(QGraphicsScene * scene, QWidget * parent)
+  : QGraphicsView(scene,parent)
 {
-	
+
 }
 
 

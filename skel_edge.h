@@ -15,6 +15,7 @@ class Skel_Edge
 public:
   Skel_Edge(Skel_Node *root,double length=1.0,double orientation=0.0); //orientation in degrees
   Skel_Edge(Skel_Edge *previous,double length=1.0,double orientation=0.0); //orientation in degrees
+  void calc_to();
   Skel_Node * from(){return m_from;}
   Skel_Node * to(){return m_to;}
   Skel_Edge * previous(){return m_previous;}
@@ -23,10 +24,13 @@ public:
   bool got_image(){return m_got_image;}
   QPixmap * image(){if (m_got_image) return &m_image; else return NULL;}
   double orientation(){return m_orientation;}
+  void set_orientation_delta(double delta_orient){m_orientation=m_orientation_reference+delta_orient;calc_to();}
+  void set_orientation_reference();
   double length(){return m_length;}
   int flipY_img(){return m_flipY_img;}
 protected:
   double m_orientation;
+  double m_orientation_reference;
   double m_length;
   double m_max_length;
   double m_min_length;
@@ -38,7 +42,6 @@ protected:
   QPixmap m_image;
   int m_flipY_img;
 
-  void calc_to();
 };
 
 #endif // SKEL_EDGE_H

@@ -26,24 +26,6 @@ void Skel_Node::draw_recursive(QGraphicsScene *scene)
       QGraphicsItem *item;
       item = scene->addPixmap(*((*it)->image()));
 
-
-         
-      /*   double decal=-(*it)->image()->height()/2;   
-	   item->setPos(decal*sin(-(*it)->orientation()*PI/180.) + (*it)->from()->x()
-		   , decal*cos(-(*it)->orientation()*PI/180.) + (*it)->from()->y());
-           item->rotate((*it)->orientation());
-	   item->scale((*it)->length()/(*it)->image()->width(),1.0);
-      */
-
-      /*double decalY=-(*it)->image()->height()/2;
-      double decalX=-(*it)->image()->height();
-      double angle=(*it)->orientation()*PI/180.;
-      item->setPos(decalX*cos(-angle) + decalY*sin(-angle) +  (*it)->from()->x()
-		   , decalX*sin(-angle) + decalY*cos(-angle) + (*it)->from()->y());
-      item->rotate((*it)->orientation());
-      //item->scale((*it)->length()/((*it)->image()->width() - (*it)->image()->height()*2),1.0);
-      */
-
       double decalY=-(*it)->image()->height()/2;
       double decalX=-(*it)->image()->height();
       double angle=(*it)->orientation()*PI/180.;
@@ -54,10 +36,19 @@ void Skel_Node::draw_recursive(QGraphicsScene *scene)
       item->moveBy(scaleY*decalY*sin(-angle)+scaleX*decalX*cos(angle) + (*it)->from()->x(),
 		   scaleY*decalY*cos(-angle)+scaleX*decalX*sin(angle) + (*it)->from()->y());
 
-      std::cout<<"pic : "<<(*it)->from()->x()<<"  "<<(*it)->from()->y()<<"  "<<(*it)->orientation()<<std::endl;
+      //std::cout<<"pic : "<<(*it)->from()->x()<<"  "<<(*it)->from()->y()<<"  "<<(*it)->orientation()<<std::endl;
 
     }
      
     if ((*it)->to() != NULL) (*it)->to()->draw_recursive(scene);
   }
+}
+
+void Skel_Node::get_nodes_recursive(std::list <Skel_Node *> * nodes_list)
+{
+  nodes_list->push_back(this);
+  std::list<Skel_Edge*>::iterator it;
+  for( it = from_of()->begin(); it != from_of()->end(); ++it ) {
+    if ((*it)->to() != NULL) (*it)->to()->get_nodes_recursive(nodes_list);
+  }  
 }

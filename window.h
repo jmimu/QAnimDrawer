@@ -5,7 +5,6 @@
 #include <QPushButton>
 #include "graphscenejm.h"
 #include "graphviewjm.h"
-#include "skeleton.h"
 
 class Window : public QWidget
 {
@@ -18,7 +17,7 @@ private:
     QPushButton *m_shotbutton;
     GraphSceneJM *scene;
     GraphViewJM *graph_view;
-    Skeleton skel;
+  
 
 };
 

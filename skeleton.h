@@ -10,6 +10,7 @@
 #include "skel_node.h"
 #include <QGraphicsScene>
 
+#include <list>
 
 /**
    Skeleton is a tree
@@ -24,8 +25,13 @@ public:
     bool load();
     bool save();
     void draw(QGraphicsScene *scene);
+    void update_nodes_list();
+    std::list <Skel_Node *> * get_nodes_list(){return &m_nodes_list;}
+
 protected:
-    Skel_Node origin;
+    Skel_Node m_origin;
+    std::list <Skel_Node *> m_nodes_list;
+    
 };
 
 #endif // SKELETON_H

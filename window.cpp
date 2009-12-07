@@ -4,7 +4,6 @@
 
 //! [0]
 Window::Window()
-  : skel()
 {
   scene = new GraphSceneJM();
   graph_view = new GraphViewJM(scene);
@@ -19,7 +18,7 @@ Window::Window()
   setWindowTitle(tr("QAnimDrawer"));
   QObject::connect(m_shotbutton, SIGNAL(clicked()), graph_view, SLOT(ask_shot()));
 
-  skel.draw(scene);
+  scene->draw_skel();
 }
 
 

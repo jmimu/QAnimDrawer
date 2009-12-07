@@ -23,6 +23,7 @@ public:
   void draw_recursive(QGraphicsScene *scene);
 
   Skel_Edge * to_of(){return m_to_of;}
+  void get_nodes_recursive(std::list <Skel_Node *> * nodes_list);
 
 protected:
   double m_x,m_y;

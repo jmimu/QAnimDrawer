@@ -3,19 +3,19 @@
 #include <iostream>
 
 Skeleton::Skeleton()
-  : origin(0,0,NULL)
+  : m_origin(0,0,NULL),m_nodes_list()
 {
   make_object();
 }
 
 void Skeleton::make_object()
 {
-  Skel_Edge *head=new Skel_Edge(&origin,30,-90);
+  Skel_Edge *head=new Skel_Edge(&m_origin,30,-90);
   head->add_image("head.png");
   
-  Skel_Edge *l_sholder=new Skel_Edge(&origin,30,-180);
+  Skel_Edge *l_sholder=new Skel_Edge(&m_origin,30,-180);
   l_sholder->add_image("arm.png", true);
-  Skel_Edge *r_sholder=new Skel_Edge(&origin,30,0);
+  Skel_Edge *r_sholder=new Skel_Edge(&m_origin,30,0);
   r_sholder->add_image("arm.png");
   
   Skel_Edge *l_arm1=new Skel_Edge(l_sholder,35,-150);
@@ -32,7 +32,7 @@ void Skeleton::make_object()
   Skel_Edge *r_hand=new Skel_Edge(r_forearm,25,-80);
   r_hand->add_image("hand.png");
   
-  Skel_Edge *body=new Skel_Edge(&origin,50,90);
+  Skel_Edge *body=new Skel_Edge(&m_origin,50,90);
   body->add_image("body.png");
   
   Skel_Edge *l_leg1=new Skel_Edge(body,40,120);
@@ -49,11 +49,17 @@ void Skeleton::make_object()
   Skel_Edge *l_foot=new Skel_Edge(l_leg2,25,-180);
   l_foot->add_image("foot.png", true);
   
-  
+  update_nodes_list();
 }
 
+void Skeleton::update_nodes_list()
+{
+  m_nodes_list.clear();
+  m_origin.get_nodes_recursive(&m_nodes_list);
+  //std::cout<<m_nodes_list.size()<<" nodes found"<<std::endl;
+}
 
 void Skeleton::draw(QGraphicsScene *scene)
 {
-  origin.draw_recursive(scene);
+  m_origin.draw_recursive(scene);
 }

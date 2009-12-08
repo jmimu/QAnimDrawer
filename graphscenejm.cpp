@@ -8,6 +8,7 @@ GraphSceneJM::GraphSceneJM(QWidget * parent)
   : QGraphicsScene(parent),skel(),node_selection(NULL),x_begin_right_click(0),y_begin_right_click(0)
 {
   //std::cout<<"_!"<<std::endl;
+  skel.load();
 }
 
 void GraphSceneJM::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
@@ -28,7 +29,6 @@ void GraphSceneJM::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     node_selection->to_of()->set_orientation_delta(mouseEvent->scenePos().x()-x_begin_right_click);
   }
 
-  skel.update_nodes_list();
   draw_skel();
 }
 
@@ -45,7 +45,7 @@ void GraphSceneJM::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     //std::cout<<"yo! "<<mouseEvent->scenePos().x()<<" "<<mouseEvent->scenePos().y()<<std::endl;
   
 
-    //try to find which node wask clicked
+    //try to find which node was clicked
     Skel_Node* closest_node=NULL;
     double min_dist=10000.;
     double dist=10000.;

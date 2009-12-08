@@ -6,6 +6,8 @@ TEMPLATE = app
 TARGET = 
 DEPENDPATH += .
 INCLUDEPATH += .
+CONFIG += qt debug console
+QT += xml
 
 # Input
 HEADERS += graphscenejm.h \

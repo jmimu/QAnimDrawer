@@ -1,6 +1,9 @@
 #include "skeleton.h"
 
 #include <iostream>
+#include <QtXml/QDomDocument>
+#include <QFile>
+
 
 Skeleton::Skeleton()
   : m_origin(0,0,NULL),m_nodes_list()
@@ -56,10 +59,58 @@ void Skeleton::update_nodes_list()
 {
   m_nodes_list.clear();
   m_origin.get_nodes_recursive(&m_nodes_list);
-  //std::cout<<m_nodes_list.size()<<" nodes found"<<std::endl;
+  std::cout<<m_nodes_list.size()<<" nodes found"<<std::endl;
 }
 
 void Skeleton::draw(QGraphicsScene *scene)
 {
   m_origin.draw_recursive(scene);
+}
+
+bool Skeleton::load()
+{
+  std::cout<<"Begin load..."<<std::endl;
+
+  QDomDocument doc( "JM_skel" );
+  QFile file( "test.xml" );
+  if( !file.open( QIODevice::ReadOnly ) ){
+    std::cout<<"Unable to open xml file"<<std::endl;
+    return false;
+  }
+  if( !doc.setContent( &file ) )
+    {
+      file.close();
+      std::cout<<"Unable to read xml"<<std::endl;
+      return false;
+    }
+  file.close();
+
+  QDomElement root = doc.documentElement();
+  if( root.tagName() != "skel" ) {
+    std::cout<<"Wrong root element"<<std::endl;
+    return false;
+  }
+
+
+
+  QDomNode n = root.firstChild();
+  while( !n.isNull() ) {
+    QDomElement e = n.toElement();
+    if( !e.isNull() ) {
+      if( e.tagName() == "contact" ) {
+	QString c_name;
+	QString c_phone;
+	QString c_eMail;
+	c_name = e.attribute( "name", "" );
+	c_phone = e.attribute( "phone", "" );
+	c_eMail = e.attribute( "email", "" );
+	std::cout<<"Contact:\t"<<c_name.toStdString()<<"\t"<<c_phone.toStdString()<<"\t"<<c_eMail.toStdString()<<std::endl;
+      }
+    }
+    n = n.nextSibling();
+  }
+
+
+  std::cout<<"Correct load end."<<std::endl;
+  return true;
 }

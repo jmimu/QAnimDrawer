@@ -5,6 +5,7 @@ Petits :
 
 Gros :
 * Lire un fichier XML avec le Skeleton
+* Ecrire un fichier XML avec les animations : http://www.digitalfanatics.org/projects/qt_tutorial/chapter09.html
 * Gérer le Z ?
 * Enregister des positions-clé
 * Jouer les animations

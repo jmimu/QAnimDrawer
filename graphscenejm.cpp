@@ -9,6 +9,8 @@ GraphSceneJM::GraphSceneJM(QWidget * parent)
 {
   //std::cout<<"_!"<<std::endl;
   skel.load();
+  setBackgroundBrush(Qt::white);
+
 }
 
 void GraphSceneJM::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)

@@ -9,7 +9,7 @@
 #include "skel_edge.h"
 #include "skel_node.h"
 #include <QGraphicsScene>
-
+#include <QtXml/QDomDocument>
 #include <list>
 
 /**
@@ -31,7 +31,9 @@ public:
 protected:
     Skel_Node m_origin;
     std::list <Skel_Node *> m_nodes_list;
-    
+
+    bool xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge=NULL);
+
 };
 
 #endif // SKELETON_H

@@ -1,7 +1,7 @@
 #include "skeleton.h"
 
 #include <iostream>
-#include <QtXml/QDomDocument>
+
 #include <QFile>
 
 
@@ -13,7 +13,7 @@ Skeleton::Skeleton()
 
 void Skeleton::make_object()
 {
-  Skel_Edge *head=new Skel_Edge(&m_origin,30,-90);
+  /*  Skel_Edge *head=new Skel_Edge(&m_origin,30,-90);
   head->add_image("head.png");
   
   Skel_Edge *l_sholder=new Skel_Edge(&m_origin,30,-180);
@@ -51,7 +51,7 @@ void Skeleton::make_object()
   r_foot->add_image("foot.png");
   Skel_Edge *l_foot=new Skel_Edge(l_leg2,25,-180);
   l_foot->add_image("foot.png", true);
-  
+  */  
   update_nodes_list();
 }
 
@@ -71,8 +71,8 @@ bool Skeleton::load()
 {
   std::cout<<"Begin load..."<<std::endl;
 
-  QDomDocument doc( "JM_skel" );
-  QFile file( "test.xml" );
+  QDomDocument doc( "JMskel" );
+  QFile file( "test2.xml" );
   if( !file.open( QIODevice::ReadOnly ) ){
     std::cout<<"Unable to open xml file"<<std::endl;
     return false;
@@ -86,7 +86,7 @@ bool Skeleton::load()
   file.close();
 
   QDomElement root = doc.documentElement();
-  if( root.tagName() != "skel" ) {
+  if( root.tagName() != "QAnimDrawer" ) {
     std::cout<<"Wrong root element"<<std::endl;
     return false;
   }
@@ -97,14 +97,27 @@ bool Skeleton::load()
   while( !n.isNull() ) {
     QDomElement e = n.toElement();
     if( !e.isNull() ) {
-      if( e.tagName() == "contact" ) {
-	QString c_name;
-	QString c_phone;
-	QString c_eMail;
-	c_name = e.attribute( "name", "" );
-	c_phone = e.attribute( "phone", "" );
-	c_eMail = e.attribute( "email", "" );
-	std::cout<<"Contact:\t"<<c_name.toStdString()<<"\t"<<c_phone.toStdString()<<"\t"<<c_eMail.toStdString()<<std::endl;
+      if( e.tagName() == "skeleton" ) {
+	std::cout<<"Found a new skeleton..."<<std::endl;
+	QDomNode n_origin = e.firstChild();
+	if (n_origin.isNull()) {
+	  std::cout<<"no origin !"<<std::endl;
+	  n = n.nextSibling();continue;
+	}
+	QDomElement e_origin = n_origin.toElement();
+	if( e_origin.tagName() != "origin" ) {
+	  std::cout<<"skeleton child is not origin !"<<std::endl;
+	  n = n.nextSibling();continue;
+	}
+	
+	m_origin.set_x(e_origin.attribute( "x", "" ).toFloat());
+	m_origin.set_y(e_origin.attribute( "y", "" ).toFloat());
+
+	std::cout<<"origin:\t"<<m_origin.x()<<"\t"<<m_origin.y()<<std::endl;
+
+	QDomNode n_origin_sons = e_origin.firstChild();
+	xml_read_edges_recursive(n_origin_sons);
+
       }
     }
     n = n.nextSibling();
@@ -112,5 +125,44 @@ bool Skeleton::load()
 
 
   std::cout<<"Correct load end."<<std::endl;
+  update_nodes_list();
+  return true;
+}
+
+
+bool Skeleton::xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge)
+{
+  if (n_sons.isNull()) {
+    std::cout<<"Element has no child !"<<std::endl;
+    return false;
+  }
+  QDomElement e_sons = n_sons.toElement();
+  if( e_sons.tagName() != "sons" ) {
+    std::cout<<"Element had to be \"sons\" !"<<std::endl;
+    return false;
+  }
+	
+  QDomNode n_edge = e_sons.firstChild();
+  while (!n_edge.isNull() ) {
+    QDomElement e_edge = n_edge.toElement();
+    if( e_edge.tagName() != "edge" ) {
+      std::cout<<"Not an edge !"<<std::endl;
+      n_edge = n_edge.nextSibling();continue;
+    }
+    //new edge
+    Skel_Edge *edge_tmp;
+    if (current_edge == NULL) edge_tmp=new Skel_Edge(&m_origin,e_edge.attribute( "len", "" ).toFloat(),e_edge.attribute( "ang", "" ).toFloat());
+    else edge_tmp=new Skel_Edge(current_edge,e_edge.attribute( "len", "" ).toFloat(),e_edge.attribute( "ang", "" ).toFloat());
+
+    bool symmetric=( e_edge.attribute( "sym", "" ) == "true" );
+    edge_tmp->add_image(e_edge.attribute( "img", "" ), symmetric);
+
+    std::cout<<"edge:\t"<<e_edge.attribute( "len", "" ).toFloat()<<"\t"<<e_edge.attribute( "ang", "" ).toFloat()<<std::endl;
+
+    QDomNode n_sons2 = e_edge.firstChild();
+    xml_read_edges_recursive(n_sons2,edge_tmp);
+    
+    n_edge = n_edge.nextSibling();
+  }
   return true;
 }

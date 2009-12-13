@@ -5,7 +5,7 @@
   Skel_Edge : an edge of the skel graph
   TODO : add a picture
   **/
-
+#include "skel_edge_pos.h"
 #include "skel_node.h"
 #include <list>
 
@@ -20,15 +20,17 @@ public:
   Skel_Node * to(){return m_to;}
   Skel_Edge * previous(){return m_previous;}
   std::list<Skel_Edge *> * next(){return &m_next;}
-  bool add_image(QString filename,bool flipY=false);
   bool got_image(){return m_got_image;}
-  QPixmap * image(){if (m_got_image) return &m_image; else return NULL;}
+  QPixmap * image(){if (m_got_image) return m_image; else return NULL;}
   double orientation(){return m_orientation;}
   void set_orientation_delta(double delta_orient){m_orientation=m_orientation_reference+delta_orient;calc_to();}
   void set_orientation_reference();
   double length(){return m_length;}
   int flipY_img(){return m_flipY_img;}
+  bool set_to_position(QString name);
+  void add_position(Skel_Edge_Pos* pos){m_pos_list.push_back(pos);}
 protected:
+  //current data
   double m_orientation;
   double m_orientation_reference;
   double m_length;
@@ -39,9 +41,11 @@ protected:
   Skel_Edge *m_previous;
   std::list <Skel_Edge *> m_next;
   bool m_got_image;
-  QPixmap m_image;
+  QPixmap *m_image;
   int m_flipY_img;
 
+  std::vector <Skel_Edge_Pos*> m_pos_list;
+  
 };
 
 #endif // SKEL_EDGE_H

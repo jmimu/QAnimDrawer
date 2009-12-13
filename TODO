@@ -1,3 +1,9 @@
+Lire les pos dans le XML
+Faire la liste des pos
+Pouvoir mettre le skel dans une position
+Mettre la liste des positions
+
+
 Petits :
 * quand on déplace un point, choix si ça affecte les descendants ou pas
 * mettre des limites d'angles aussi ?

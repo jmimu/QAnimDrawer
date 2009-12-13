@@ -8,51 +8,7 @@
 Skeleton::Skeleton()
   : m_origin(0,0,NULL),m_nodes_list()
 {
-  make_object();
-}
-
-void Skeleton::make_object()
-{
-  /*  Skel_Edge *head=new Skel_Edge(&m_origin,30,-90);
-  head->add_image("head.png");
-  
-  Skel_Edge *l_sholder=new Skel_Edge(&m_origin,30,-180);
-  l_sholder->add_image("arm.png", true);
-  Skel_Edge *r_sholder=new Skel_Edge(&m_origin,30,0);
-  r_sholder->add_image("arm.png");
-  
-  Skel_Edge *l_arm1=new Skel_Edge(l_sholder,35,-150);
-  l_arm1->add_image("arm.png", true);
-  Skel_Edge *r_arm1=new Skel_Edge(r_sholder,35,-30);
-  r_arm1->add_image("arm.png");
-  Skel_Edge *l_forearm=new Skel_Edge(l_arm1,35,-140);
-  l_forearm->add_image("forearm.png", true);
-  Skel_Edge *r_forearm=new Skel_Edge(r_arm1,35,-40);
-  r_forearm->add_image("forearm.png");
-  
-  Skel_Edge *l_hand=new Skel_Edge(l_forearm,25,-150);
-  l_hand->add_image("hand.png", true);
-  Skel_Edge *r_hand=new Skel_Edge(r_forearm,25,-80);
-  r_hand->add_image("hand.png");
-  
-  Skel_Edge *body=new Skel_Edge(&m_origin,50,90);
-  body->add_image("body.png");
-  
-  Skel_Edge *l_leg1=new Skel_Edge(body,40,120);
-  l_leg1->add_image("leg.png",true);
-  Skel_Edge *l_leg2=new Skel_Edge(l_leg1,50,90);
-  l_leg2->add_image("leg2.png", true);
-  Skel_Edge *r_leg1=new Skel_Edge(body,40,60);
-  r_leg1->add_image("leg.png");
-  Skel_Edge *r_leg2=new Skel_Edge(r_leg1,50,90);
-  r_leg2->add_image("leg2.png");
-  
-  Skel_Edge *r_foot=new Skel_Edge(r_leg2,25,0);
-  r_foot->add_image("foot.png");
-  Skel_Edge *l_foot=new Skel_Edge(l_leg2,25,-180);
-  l_foot->add_image("foot.png", true);
-  */  
-  update_nodes_list();
+ 
 }
 
 void Skeleton::update_nodes_list()
@@ -67,12 +23,23 @@ void Skeleton::draw(QGraphicsScene *scene)
   m_origin.draw_recursive(scene);
 }
 
+bool Skeleton::set_to_position(QString name)
+{
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
+    (*it)->set_to_position(name);
+  }
+
+  return true;
+}
+
 bool Skeleton::load()
 {
   std::cout<<"Begin load..."<<std::endl;
+  m_positions_list.clear();
 
   QDomDocument doc( "JMskel" );
-  QFile file( "test2.xml" );
+  QFile file( "test.xml" );
   if( !file.open( QIODevice::ReadOnly ) ){
     std::cout<<"Unable to open xml file"<<std::endl;
     return false;
@@ -126,12 +93,15 @@ bool Skeleton::load()
 
   std::cout<<"Correct load end."<<std::endl;
   update_nodes_list();
+  set_to_position("ini");
   return true;
 }
 
 
 bool Skeleton::xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge)
 {
+  std::cout<<"enter xml_read_edges_recursive"<<std::endl;
+
   if (n_sons.isNull()) {
     std::cout<<"Element has no child !"<<std::endl;
     return false;
@@ -151,18 +121,67 @@ bool Skeleton::xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge)
     }
     //new edge
     Skel_Edge *edge_tmp;
-    if (current_edge == NULL) edge_tmp=new Skel_Edge(&m_origin,e_edge.attribute( "len", "" ).toFloat(),e_edge.attribute( "ang", "" ).toFloat());
-    else edge_tmp=new Skel_Edge(current_edge,e_edge.attribute( "len", "" ).toFloat(),e_edge.attribute( "ang", "" ).toFloat());
 
-    bool symmetric=( e_edge.attribute( "sym", "" ) == "true" );
-    edge_tmp->add_image(e_edge.attribute( "img", "" ), symmetric);
+    if (current_edge == NULL) edge_tmp=new Skel_Edge(&m_origin);
+    else edge_tmp=new Skel_Edge(current_edge);
 
     std::cout<<"edge:\t"<<e_edge.attribute( "len", "" ).toFloat()<<"\t"<<e_edge.attribute( "ang", "" ).toFloat()<<std::endl;
 
-    QDomNode n_sons2 = e_edge.firstChild();
-    xml_read_edges_recursive(n_sons2,edge_tmp);
-    
+    //for each child : if positions or sons
+    QDomNode n_edge_descendent = e_edge.firstChild();
+    while (!n_edge_descendent.isNull() ) {
+      QDomElement e_edge_descendent = n_edge_descendent.toElement();
+      if( e_edge_descendent.tagName() == "positions" )
+	xml_read_edges_pos(n_edge_descendent,edge_tmp);
+      if( e_edge_descendent.tagName() == "sons" )
+	xml_read_edges_recursive(n_edge_descendent,edge_tmp);
+
+      n_edge_descendent= n_edge_descendent.nextSibling();
+    }
+
+
     n_edge = n_edge.nextSibling();
   }
+  return true;
+}
+
+
+bool Skeleton::xml_read_edges_pos(QDomNode n_positions,Skel_Edge *current_edge)
+{
+ std::cout<<"enter xml_read_edges_pos"<<std::endl;
+
+  if (n_positions.isNull()) {
+    std::cout<<"Element has no positions !"<<std::endl;
+    return false;
+  }
+  QDomElement e_positions = n_positions.toElement();
+  if( e_positions.tagName() != "positions" ) {
+    std::cout<<"Element had to be \"positions\" !"<<std::endl;
+    return false;
+  }
+	
+  QDomNode n_pos = e_positions.firstChild();
+  while (!n_pos.isNull() ) {
+    QDomElement e_pos = n_pos.toElement();
+    if( e_pos.tagName() != "pos" ) {
+      std::cout<<"Not an pos !"<<std::endl;
+      n_pos = n_pos.nextSibling();continue;
+    }
+    //new pos
+    std::cout<<"Pos name: "<<e_pos.attribute( "name", "" ).toStdString()<<std::endl;
+    Skel_Edge_Pos *pos = new Skel_Edge_Pos(e_pos.attribute( "name", "" ),e_pos.attribute( "len", "" ).toFloat(),e_pos.attribute( "ang", "" ).toFloat());
+    bool symmetric=( e_pos.attribute( "sym", "" ) == "true" );
+    pos->add_image(e_pos.attribute( "img", "" ), symmetric);
+
+    current_edge->add_position(pos);
+
+    //xcurrent_edge->set_to_position("ini");//for debug
+
+    m_positions_list.push_back(e_pos.attribute( "name", "" ).toStdString());
+
+
+    n_pos = n_pos.nextSibling();
+  }
+
   return true;
 }

@@ -13,6 +13,7 @@ QT += xml
 HEADERS += graphscenejm.h \
            graphviewjm.h \
            skel_edge.h \
+           skel_edge_pos.h \
            skel_node.h \
            skeleton.h \
            window.h
@@ -20,6 +21,7 @@ SOURCES += graphscenejm.cpp \
            graphviewjm.cpp \
            main.cpp \
            skel_edge.cpp \
+           skel_edge_pos.cpp \
            skel_node.cpp \
            skeleton.cpp \
            window.cpp

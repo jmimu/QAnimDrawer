@@ -6,7 +6,7 @@
 
 
 Skel_Edge::Skel_Edge(Skel_Node *root,double length,double orientation)
-  : m_orientation(orientation),m_orientation_reference(orientation),m_length(length),m_max_length(length),m_min_length(length),m_from(root),m_to(NULL),m_previous(NULL),m_next(),m_got_image(false),m_image()
+  : m_orientation(orientation),m_orientation_reference(orientation),m_length(length),m_max_length(length),m_min_length(length),m_from(root),m_to(NULL),m_previous(NULL),m_next(),m_got_image(false),m_image(NULL)
 {
   m_to=new Skel_Node(0,0,this);
   calc_to();
@@ -14,7 +14,7 @@ Skel_Edge::Skel_Edge(Skel_Node *root,double length,double orientation)
 }
 
 Skel_Edge::Skel_Edge(Skel_Edge *previous,double length,double orientation)
-  : m_orientation(orientation),m_orientation_reference(orientation),m_length(length),m_max_length(length),m_min_length(length),m_from(previous->to()),m_to(NULL),m_previous(previous),m_next(),m_got_image(false),m_image()
+  : m_orientation(orientation),m_orientation_reference(orientation),m_length(length),m_max_length(length),m_min_length(length),m_from(previous->to()),m_to(NULL),m_previous(previous),m_next(),m_got_image(false),m_image(NULL)
 {
   m_to=new Skel_Node(0,0,this);
   calc_to();
@@ -47,13 +47,28 @@ void Skel_Edge::set_orientation_reference()
   }  
 }
 
-bool Skel_Edge::add_image(QString filename,bool flipY)
+//recursive
+bool Skel_Edge::set_to_position(QString name)
 {
-  m_got_image=false;
-  m_got_image=m_image.load(filename, 0, Qt::AutoColor);
+  unsigned int i=0;
+  for (i=0;i<m_pos_list.size();i++) {
+    if (m_pos_list.at(i)->get_name()==name) {
+      m_orientation=m_pos_list.at(i)->orientation();
+      m_length=m_pos_list.at(i)->length();
+      m_image=m_pos_list.at(i)->image();
+      m_flipY_img=m_pos_list.at(i)->flipY_img();
+      m_got_image=m_pos_list.at(i)->got_image();
+      std::cout<<"set to position: "<<name.toStdString()<<" "<<m_orientation<<" "<<m_length<<std::endl;
 
-  if (flipY) m_flipY_img=-1;
-  else m_flipY_img=1; 
+      calc_to();
+      set_orientation_reference();
+      
+      std::list<Skel_Edge*>::iterator it;
+      for( it = m_next.begin(); it != m_next.end(); ++it ) {
+	(*it)->set_to_position(name);
+      }  
 
-  return m_got_image;
+    }
+  }
+  return (i<m_pos_list.size());
 }

@@ -7,6 +7,7 @@
 	<edge>
 	  <positions>
 	    <pos name="ini" len="30" ang="-90" img="head.png" sym="false" />
+	    <pos name="bonjour" len="30" ang="-60" img="head.png" sym="false" />
 	  </positions>
 	  <sons></sons>
 	</edge>

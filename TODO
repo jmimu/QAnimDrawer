@@ -1,7 +1,7 @@
-Lire les pos dans le XML
-Faire la liste des pos
-Pouvoir mettre le skel dans une position
-Mettre la liste des positions
+* enregistrer la pos de chaque edge (même si la pos existe pas) => map ?
+* pouvoir faire de nouvelles positions
+
+* faire les animation
 
 
 Petits :
@@ -10,7 +10,6 @@ Petits :
 
 
 Gros :
-* Lire un fichier XML avec le Skeleton
 * Ecrire un fichier XML avec les animations : http://www.digitalfanatics.org/projects/qt_tutorial/chapter09.html
 * Gérer le Z ?
 * Enregister des positions-clé

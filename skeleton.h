@@ -12,7 +12,7 @@
 #include <QGraphicsScene>
 #include <QtXml/QDomDocument>
 #include <list>
-#include <string>
+#include <set>
 
 /**
    Skeleton is a tree
@@ -29,10 +29,11 @@ public:
     void update_nodes_list();
     std::list <Skel_Node *> * get_nodes_list(){return &m_nodes_list;}
     bool set_to_position(QString name);
+    std::set <QString> * get_positions_list(){return &m_positions_list;}
 protected:
     Skel_Node m_origin;
     std::list <Skel_Node *> m_nodes_list;
-    std::list <std::string> m_positions_list;
+    std::set <QString> m_positions_list;
 
     bool xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge=NULL);
     bool xml_read_edges_pos(QDomNode n_sons,Skel_Edge *current_edge);

@@ -12,6 +12,8 @@ class GraphSceneJM: public QGraphicsScene
   public:
     GraphSceneJM(QWidget * parent = 0);
     void draw_skel();
+    Skeleton * get_skel(){return &skel;}
+  
   protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);	
     void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);	

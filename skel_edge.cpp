@@ -58,7 +58,7 @@ bool Skel_Edge::set_to_position(QString name)
       m_image=m_pos_list.at(i)->image();
       m_flipY_img=m_pos_list.at(i)->flipY_img();
       m_got_image=m_pos_list.at(i)->got_image();
-      std::cout<<"set to position: "<<name.toStdString()<<" "<<m_orientation<<" "<<m_length<<std::endl;
+      std::cout<<"set to position: "<<name.toStdString()<<" o"<<m_orientation<<" l"<<m_length<<std::endl;
 
       calc_to();
       set_orientation_reference();

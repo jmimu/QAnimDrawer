@@ -177,7 +177,7 @@ bool Skeleton::xml_read_edges_pos(QDomNode n_positions,Skel_Edge *current_edge)
 
     //xcurrent_edge->set_to_position("ini");//for debug
 
-    m_positions_list.push_back(e_pos.attribute( "name", "" ).toStdString());
+    m_positions_list.insert(e_pos.attribute( "name", "" ));
 
 
     n_pos = n_pos.nextSibling();

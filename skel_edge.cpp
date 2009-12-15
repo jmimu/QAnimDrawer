@@ -53,7 +53,12 @@ bool Skel_Edge::set_to_position(QString name)
   std::map<QString,Skel_Edge_Pos*>::iterator iter = m_pos_list.find(name);
   if (iter == m_pos_list.end()) {
     //create the pos
-    Skel_Edge_Pos *pos = new Skel_Edge_Pos(name,10,0);
+    //get the first position
+    Skel_Edge_Pos *first_pos = m_pos_list.begin()->second;
+    Skel_Edge_Pos *pos = new Skel_Edge_Pos(name,first_pos->length(),first_pos->orientation());
+    if (first_pos->got_image()) {
+      pos->add_image(first_pos->get_image_filename(),first_pos->flipY_img()!=1);
+    }
     iter =( m_pos_list.insert(std::make_pair(name,pos)) ).first;
   }
   m_orientation= iter->second->orientation();

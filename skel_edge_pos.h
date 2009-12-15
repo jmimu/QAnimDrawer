@@ -21,6 +21,7 @@ public:
   double length(){return m_length;}
   int flipY_img(){return m_flipY_img;}
   QString get_name(){return m_name;}
+  QString get_image_filename(){return m_image_filename;}
 protected:
   double m_orientation;
   double m_length;
@@ -28,6 +29,7 @@ protected:
   QPixmap m_image;
   int m_flipY_img;
   QString m_name;
+  QString m_image_filename;
 
 };
 

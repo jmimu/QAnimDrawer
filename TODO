@@ -7,7 +7,7 @@
 Petits :
 * quand on déplace un point, choix si ça affecte les descendants ou pas
 * mettre des limites d'angles et de longueur ?
-
+* Permettre de changer les 2 dimensions des images ?
 
 Gros :
 * Ecrire un fichier XML avec les animations : http://www.digitalfanatics.org/projects/qt_tutorial/chapter09.html

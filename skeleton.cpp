@@ -169,15 +169,16 @@ bool Skeleton::xml_read_edges_pos(QDomNode n_positions,Skel_Edge *current_edge)
     }
     //new pos
     std::cout<<"Pos name: "<<e_pos.attribute( "name", "" ).toStdString()<<std::endl;
+    QString pos_name=e_pos.attribute( "name", "" );
     Skel_Edge_Pos *pos = new Skel_Edge_Pos(e_pos.attribute( "name", "" ),e_pos.attribute( "len", "" ).toFloat(),e_pos.attribute( "ang", "" ).toFloat());
     bool symmetric=( e_pos.attribute( "sym", "" ) == "true" );
     pos->add_image(e_pos.attribute( "img", "" ), symmetric);
 
-    current_edge->add_position(pos);
+    current_edge->add_position(pos_name,pos);
 
     //xcurrent_edge->set_to_position("ini");//for debug
 
-    m_positions_list.insert(e_pos.attribute( "name", "" ));
+    m_positions_list.insert(pos_name);
 
 
     n_pos = n_pos.nextSibling();

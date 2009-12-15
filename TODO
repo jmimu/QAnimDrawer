@@ -1,4 +1,4 @@
-* enregistrer la pos de chaque edge (même si la pos existe pas) => map ?
+* enregistrer la pos de chaque edge après un déplacement
 * pouvoir faire de nouvelles positions
 
 * faire les animation
@@ -6,7 +6,7 @@
 
 Petits :
 * quand on déplace un point, choix si ça affecte les descendants ou pas
-* mettre des limites d'angles aussi ?
+* mettre des limites d'angles et de longueur ?
 
 
 Gros :

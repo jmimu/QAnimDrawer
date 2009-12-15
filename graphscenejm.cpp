@@ -29,6 +29,7 @@ void GraphSceneJM::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
       (*it)->calc_to();
   }else{
     node_selection->to_of()->set_orientation_delta(mouseEvent->scenePos().x()-x_begin_right_click);
+    //node_selection->to_of()->set_length_delta(mouseEvent->scenePos().y()-y_begin_right_click);
   }
 
   draw_skel();
@@ -41,7 +42,10 @@ void GraphSceneJM::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     x_begin_right_click=mouseEvent->scenePos().x();
     y_begin_right_click=mouseEvent->scenePos().y();
   }else{
-    if ((node_selection != NULL)&& (node_selection->to_of() != NULL) ) node_selection->to_of()->set_orientation_reference(); 
+    if ((node_selection != NULL)&& (node_selection->to_of() != NULL) ) {
+      node_selection->to_of()->set_orientation_reference(); 
+      node_selection->to_of()->set_length_reference(); 
+    }
     int x_mouse=mouseEvent->scenePos().x();
     int y_mouse=mouseEvent->scenePos().y();
     //std::cout<<"yo! "<<mouseEvent->scenePos().x()<<" "<<mouseEvent->scenePos().y()<<std::endl;

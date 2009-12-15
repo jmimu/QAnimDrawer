@@ -50,25 +50,27 @@ void Skel_Edge::set_orientation_reference()
 //recursive
 bool Skel_Edge::set_to_position(QString name)
 {
-  unsigned int i=0;
-  for (i=0;i<m_pos_list.size();i++) {
-    if (m_pos_list.at(i)->get_name()==name) {
-      m_orientation=m_pos_list.at(i)->orientation();
-      m_length=m_pos_list.at(i)->length();
-      m_image=m_pos_list.at(i)->image();
-      m_flipY_img=m_pos_list.at(i)->flipY_img();
-      m_got_image=m_pos_list.at(i)->got_image();
-      std::cout<<"set to position: "<<name.toStdString()<<" o"<<m_orientation<<" l"<<m_length<<std::endl;
-
-      calc_to();
-      set_orientation_reference();
-      
-      std::list<Skel_Edge*>::iterator it;
-      for( it = m_next.begin(); it != m_next.end(); ++it ) {
-	(*it)->set_to_position(name);
-      }  
-
-    }
+  std::map<QString,Skel_Edge_Pos*>::iterator iter = m_pos_list.find(name);
+  if (iter == m_pos_list.end()) {
+    //create the pos
+    Skel_Edge_Pos *pos = new Skel_Edge_Pos(name,10,0);
+    iter =( m_pos_list.insert(std::make_pair(name,pos)) ).first;
   }
-  return (i<m_pos_list.size());
+  m_orientation= iter->second->orientation();
+  m_length= iter->second->length();
+  m_image= iter->second->image();
+  m_flipY_img= iter->second->flipY_img();
+  m_got_image= iter->second->got_image();
+  std::cout<<"set to position: "<<name.toStdString()<<" o"<<m_orientation<<" l"<<m_length<<std::endl;
+  
+  calc_to();
+  set_length_reference();
+  set_orientation_reference();
+  
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_next.begin(); it != m_next.end(); ++it ) {
+    (*it)->set_to_position(name);
+  }  
+  
+  return true;
 }

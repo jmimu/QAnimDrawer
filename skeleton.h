@@ -29,6 +29,7 @@ public:
     void update_nodes_list();
     std::list <Skel_Node *> * get_nodes_list(){return &m_nodes_list;}
     bool set_to_position(QString name);
+    bool save_position(QString name);
     std::set <QString> * get_positions_list(){return &m_positions_list;}
 protected:
     Skel_Node m_origin;

@@ -9,6 +9,7 @@
 #include "skel_node.h"
 #include <list>
 #include <map>
+#include <QtXml/QDomDocument>
 
 class Skel_Edge
 {
@@ -30,7 +31,9 @@ public:
   double length(){return m_length;}
   int flipY_img(){return m_flipY_img;}
   bool set_to_position(QString name);
+  bool save_position(QString name);
   void add_position(QString pos_name,Skel_Edge_Pos* pos){m_pos_list.insert(std::make_pair(pos_name,pos));}
+  void exportXML( QDomDocument &d,QDomElement &e);
 protected:
   //current data
   double m_orientation;

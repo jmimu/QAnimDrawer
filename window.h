@@ -18,10 +18,12 @@ class Window : public QWidget
 
   public slots:
     void change_pos(int index);
+    void save_pos();
 
 
 private:
     QPushButton *m_shotbutton;
+    QPushButton *m_saveposbutton;
     GraphSceneJM *scene;
     GraphViewJM *graph_view;
     QComboBox *m_pos_list;

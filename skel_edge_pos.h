@@ -22,6 +22,9 @@ public:
   int flipY_img(){return m_flipY_img;}
   QString get_name(){return m_name;}
   QString get_image_filename(){return m_image_filename;}
+
+  void set_orientation(double orient){m_orientation=orient;}
+  void set_length(double len){m_length=len;}
 protected:
   double m_orientation;
   double m_length;

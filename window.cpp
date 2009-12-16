@@ -9,22 +9,24 @@ Window::Window()
   scene = new GraphSceneJM();
   graph_view = new GraphViewJM(scene);
   m_shotbutton = new QPushButton("Shot", this);
+  m_saveposbutton = new QPushButton("Save Pos", this);
   m_pos_list = new QComboBox(this);
 
-  QHBoxLayout *mainLayout = new QHBoxLayout;
-  mainLayout->addWidget(graph_view);
-  mainLayout->addWidget(m_shotbutton);
-  mainLayout->addWidget(m_pos_list);
+  QGridLayout *mainLayout = new QGridLayout;
+  mainLayout->addWidget(graph_view,1,1,6,2);
+  mainLayout->addWidget(m_shotbutton,1,3);
+  mainLayout->addWidget(m_saveposbutton,2,3);
+  mainLayout->addWidget(m_pos_list,3,3);
 
   setLayout(mainLayout);
   
   setWindowTitle(tr("QAnimDrawer"));
   QObject::connect(m_shotbutton, SIGNAL(clicked()), graph_view, SLOT(ask_shot()));
+  QObject::connect(m_saveposbutton, SIGNAL(clicked()), this, SLOT(save_pos()));
 
   QObject::connect(m_pos_list, SIGNAL(currentIndexChanged(int)), this, SLOT(change_pos(int)));
 
   scene->draw_skel();
-
   
   update_pos_list();
 }
@@ -47,4 +49,11 @@ void Window::change_pos(int index)
   scene->get_skel()->set_to_position(m_pos_list->itemText(index));
 
   scene->draw_skel();
+}
+
+void Window::save_pos()
+{
+  std::cout<<"Save position: "<<m_pos_list->currentText().toStdString()<<std::endl;
+  scene->get_skel()->save_position(m_pos_list->currentText());
+  scene->get_skel()->save();
 }

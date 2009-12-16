@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <QFile>
-
+#include <QTextStream>
 
 Skeleton::Skeleton()
   : m_origin(0,0,NULL),m_nodes_list()
@@ -32,6 +32,16 @@ bool Skeleton::set_to_position(QString name)
 
   return true;
 }
+
+bool Skeleton::save_position(QString name)
+{
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
+    (*it)->save_position(name);
+  }
+  return true;
+}
+
 
 bool Skeleton::load()
 {
@@ -94,6 +104,43 @@ bool Skeleton::load()
   std::cout<<"Correct load end."<<std::endl;
   update_nodes_list();
   set_to_position("ini");
+  return true;
+}
+
+
+bool Skeleton::save()
+{
+  std::cout<<"Write file"<<std::endl;
+
+  QDomDocument doc( "JMskel" );
+  QDomElement root = doc.createElement( "QAnimDrawer" );
+  doc.appendChild( root );
+
+  /*  Contact c;
+  c.name = "Kal";
+  c.eMail = "kal@goteborg.se";
+  c.phone = "+46(0)31 123 4567";
+  root.appendChild( ContactToNode( doc, c ) );*/
+
+  QDomElement e_version = doc.createElement("version");
+  root.appendChild(e_version);
+  QDomText versionText = doc.createTextNode("0.01");
+  e_version.appendChild(versionText);
+
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
+    (*it)->exportXML(doc,root);
+  }
+
+  QFile file( "test0.xml" );
+  if( !file.open( QIODevice::WriteOnly ) )
+    return false;
+
+  QTextStream ts( &file );
+  ts << doc.toString();
+
+  file.close();
+
   return true;
 }
 

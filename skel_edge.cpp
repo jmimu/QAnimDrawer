@@ -79,3 +79,37 @@ bool Skel_Edge::set_to_position(QString name)
   
   return true;
 }
+
+//recursive
+bool Skel_Edge::save_position(QString name)
+{
+  std::map<QString,Skel_Edge_Pos*>::iterator iter = m_pos_list.find(name);
+  if (iter == m_pos_list.end()) {
+    return false;
+  }
+  iter->second->set_orientation(m_orientation);
+  iter->second->set_length(m_length);
+  
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_next.begin(); it != m_next.end(); ++it ) {
+    (*it)->save_position(name);
+  }  
+  
+  return true;
+}
+
+void Skel_Edge::exportXML( QDomDocument &d,QDomElement &e)
+{
+   QDomElement e_edge = d.createElement( "edge" );
+   e.appendChild(e_edge);
+  
+   std::list<Skel_Edge*>::iterator it;
+   for( it = m_next.begin(); it != m_next.end(); ++it ) {
+     (*it)->exportXML(d,e_edge);
+   }
+
+   /*cn.setAttribute( "name", c.name );
+   cn.setAttribute( "phone", c.phone );
+   cn.setAttribute( "email", c.eMail );*/
+
+} 

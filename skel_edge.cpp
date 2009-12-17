@@ -100,16 +100,20 @@ bool Skel_Edge::save_position(QString name)
 
 void Skel_Edge::exportXML( QDomDocument &d,QDomElement &e)
 {
-   QDomElement e_edge = d.createElement( "edge" );
-   e.appendChild(e_edge);
+  QDomElement e_edge = d.createElement( "edge" );
+  e.appendChild(e_edge);
+
+  QDomElement e_positions = d.createElement( "positions" );
+  e_edge.appendChild(e_positions);
+    
+  std::map<QString,Skel_Edge_Pos*>::iterator pos_iter;
+  for( pos_iter = m_pos_list.begin(); pos_iter != m_pos_list.end(); ++pos_iter ) {
+    pos_iter->second->exportXML(d,e_positions);
+  }
   
-   std::list<Skel_Edge*>::iterator it;
-   for( it = m_next.begin(); it != m_next.end(); ++it ) {
-     (*it)->exportXML(d,e_edge);
-   }
-
-   /*cn.setAttribute( "name", c.name );
-   cn.setAttribute( "phone", c.phone );
-   cn.setAttribute( "email", c.eMail );*/
-
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_next.begin(); it != m_next.end(); ++it ) {
+    (*it)->exportXML(d,e_edge);
+  }
+  
 } 

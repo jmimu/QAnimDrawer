@@ -9,6 +9,7 @@
   - img
   **/
 #include <QPixmap>
+#include <QtXml/QDomDocument>
 
 class Skel_Edge_Pos
 {
@@ -25,6 +26,7 @@ public:
 
   void set_orientation(double orient){m_orientation=orient;}
   void set_length(double len){m_length=len;}
+  void exportXML( QDomDocument &d,QDomElement &e);
 protected:
   double m_orientation;
   double m_length;

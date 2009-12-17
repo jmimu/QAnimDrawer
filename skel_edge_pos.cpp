@@ -22,3 +22,15 @@ bool Skel_Edge_Pos::add_image(QString filename,bool flipY)
 
   return m_got_image;
 }
+
+void Skel_Edge_Pos::exportXML( QDomDocument &d,QDomElement &e)
+{
+  std::cout<<"Skel_Edge_Pos::exportXML "<<m_name.toStdString()<<std::endl;
+  QDomElement e_pos = d.createElement( "pos" );
+  e.appendChild(e_pos);
+  e_pos.setAttribute( "name", m_name );
+  e_pos.setAttribute( "len", m_length );
+  e_pos.setAttribute( "ang", m_orientation );
+  e_pos.setAttribute( "img", m_image_filename );
+  e_pos.setAttribute( "sym", m_flipY_img==1 );
+} 

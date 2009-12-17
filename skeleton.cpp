@@ -49,7 +49,7 @@ bool Skeleton::load()
   m_positions_list.clear();
 
   QDomDocument doc( "JMskel" );
-  QFile file( "test0.xml" );
+  QFile file( "test1.xml" );
   if( !file.open( QIODevice::ReadOnly ) ){
     std::cout<<"Unable to open xml file"<<std::endl;
     return false;
@@ -146,7 +146,7 @@ bool Skeleton::save()
     (*it)->exportXML(doc,e_sons);
   }
 
-  QFile file( "test0.xml" );
+  QFile file( "test1.xml" );
   if( !file.open( QIODevice::WriteOnly ) )
     return false;
 

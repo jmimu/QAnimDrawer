@@ -19,10 +19,11 @@ void Skel_Node::draw_recursive(QGraphicsScene *scene)
   QPen pen(Qt::blue, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
   std::list<Skel_Edge*>::iterator it;
   for( it = from_of()->begin(); it != from_of()->end(); ++it ) {
-    QLine ligne((*it)->from()->x(),(*it)->from()->y(),(*it)->to()->x(),(*it)->to()->y());
-    scene->addLine(ligne, pen);
-
-    if ((*it)->got_image()){
+    if (!(*it)->got_image()){    
+      QLine ligne((*it)->from()->x(),(*it)->from()->y(),(*it)->to()->x(),(*it)->to()->y());
+      scene->addLine(ligne, pen);
+      //std::cout<<"add a line !"<<std::endl;
+    }else{
       QGraphicsItem *item;
       item = scene->addPixmap(*((*it)->image()));
 

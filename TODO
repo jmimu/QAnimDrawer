@@ -2,6 +2,10 @@
 * faire les animation
 
 
+Animations :
+* faire une classe héritant de Skel_Edge avec en plus pos_init et pos_final et peut-être une vitesse ?
+* Comment utiliser ça ? autre programme ? autre fenêtre ?
+
 Petits :
 * quand on déplace un point, choix si ça affecte les descendants ou pas
 * mettre des limites d'angles et de longueur ?
@@ -9,7 +13,7 @@ Petits :
 
 Gros :
 * Ecrire un fichier XML avec les animations : http://www.digitalfanatics.org/projects/qt_tutorial/chapter09.html
-* Gérer le Z ?
+* Gérer le Z ? => nécessaire
 * Enregister des positions-clé
 * Jouer les animations
 * Enregistrer les intervalles

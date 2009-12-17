@@ -10,6 +10,8 @@ Window::Window()
   graph_view = new GraphViewJM(scene);
   m_shotbutton = new QPushButton("Shot", this);
   m_saveposbutton = new QPushButton("Save Pos", this);
+  m_newposbutton = new QPushButton("New Pos", this);
+  m_delposbutton = new QPushButton("Del Pos", this);
   m_pos_list = new QComboBox(this);
 
   QGridLayout *mainLayout = new QGridLayout;
@@ -17,6 +19,8 @@ Window::Window()
   mainLayout->addWidget(m_shotbutton,1,3);
   mainLayout->addWidget(m_saveposbutton,2,3);
   mainLayout->addWidget(m_pos_list,3,3);
+  mainLayout->addWidget(m_newposbutton,4,3);
+  mainLayout->addWidget(m_delposbutton,5,3);
 
   setLayout(mainLayout);
   

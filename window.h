@@ -24,6 +24,8 @@ class Window : public QWidget
 private:
     QPushButton *m_shotbutton;
     QPushButton *m_saveposbutton;
+    QPushButton *m_newposbutton;
+    QPushButton *m_delposbutton;
     GraphSceneJM *scene;
     GraphViewJM *graph_view;
     QComboBox *m_pos_list;

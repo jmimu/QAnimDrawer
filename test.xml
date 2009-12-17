@@ -6,29 +6,29 @@
       <sons>
 	<edge>
 	  <positions>
-	    <pos name="ini" len="30" ang="-90" img="head.png" sym="false" />
-	    <pos name="bonjour" len="30" ang="-60" img="head.png" sym="false" />
+	    <pos name="ini" len="30" ang="-90" img="data/P1/head.png" sym="false" />
+	    <pos name="bonjour" len="30" ang="-60" img="data/P1/head.png" sym="false" />
 	  </positions>
 	  <sons></sons>
 	</edge>
 	<edge>
 	  <positions>
-	    <pos name="ini" len="30" ang="-180" img="arm.png" sym="true" />
+	    <pos name="ini" len="30" ang="-180" img="data/P1/arm.png" sym="true" />
 	  </positions>
 	  <sons>
 	    <edge>
 	      <positions>
-		<pos name="ini" len="35" ang="-150" img="arm.png" sym="true" />
+		<pos name="ini" len="35" ang="-150" img="data/P1/arm.png" sym="true" />
 	      </positions>
 	      <sons>
 		<edge>
 		  <positions>
-		    <pos name="ini" len="35" ang="-140" img="forearm.png" sym="true" />
+		    <pos name="ini" len="35" ang="-140" img="data/P1/forearm.png" sym="true" />
 		  </positions>
 		  <sons>
 		    <edge>
 		      <positions>
-			<pos name="ini" len="25" ang="-150" img="hand.png" sym="true" />
+			<pos name="ini" len="25" ang="-150" img="data/P1/hand.png" sym="true" />
 		      </positions>
 		      <sons></sons>
 		    </edge>
@@ -40,22 +40,22 @@
 	</edge>
 	<edge>
 	  <positions>
-	    <pos name="ini" len="30" ang="0" img="arm.png" sym="false" />
+	    <pos name="ini" len="30" ang="0" img="data/P1/arm.png" sym="false" />
 	  </positions>
 	  <sons>
 	    <edge>
 	      <positions>
-		<pos name="ini" len="30" ang="-30" img="arm.png" sym="false" />
+		<pos name="ini" len="30" ang="-30" img="data/P1/arm.png" sym="false" />
 	      </positions>
 	      <sons>
 		<edge>
 		  <positions>
-		    <pos name="ini" len="35" ang="-40" img="forearm.png" sym="false" />
+		    <pos name="ini" len="35" ang="-40" img="data/P1/forearm.png" sym="false" />
 		  </positions>
 		  <sons>
 		    <edge>
 		      <positions>
-			<pos name="ini" len="25" ang="-80" img="hand.png" sym="false" />
+			<pos name="ini" len="25" ang="-80" img="data/P1/hand.png" sym="false" />
 		      </positions>
 		      <sons></sons>
 		    </edge>
@@ -67,22 +67,22 @@
 	</edge>
 	<edge>
 	  <positions>
-	    <pos name="ini" len="50" ang="90" img="body.png" sym="false" />
+	    <pos name="ini" len="50" ang="90" img="data/P1/body.png" sym="false" />
 	  </positions>
 	  <sons>
 	    <edge>
 	      <positions>
-		<pos name="ini" len="40" ang="120" img="leg.png" sym="true" />
+		<pos name="ini" len="40" ang="120" img="data/P1/leg.png" sym="true" />
 	      </positions>
 	      <sons>
 		<edge>
 		  <positions>
-		    <pos name="ini" len="50" ang="90" img="leg2.png" sym="true" />
+		    <pos name="ini" len="50" ang="90" img="data/P1/leg2.png" sym="true" />
 		  </positions>
 		  <sons>
 		    <edge>
 		      <positions>
-			<pos name="ini" len="25" ang="-180" img="foot.png" sym="true" />
+			<pos name="ini" len="25" ang="-180" img="data/P1/foot.png" sym="true" />
 		      </positions>
 		      <sons></sons>
 		    </edge>
@@ -92,17 +92,17 @@
 	    </edge>
 	    <edge>
 	      <positions>
-		<pos name="ini" len="40" ang="60" img="leg.png" sym="false" />
+		<pos name="ini" len="40" ang="60" img="data/P1/leg.png" sym="false" />
 	      </positions>
 	      <sons>
 		<edge>
 		  <positions>
-		    <pos name="ini" len="50" ang="90" img="leg2.png" sym="false" />
+		    <pos name="ini" len="50" ang="90" img="data/P1/leg2.png" sym="false" />
 		  </positions>
 		  <sons>
 		    <edge>
 		      <positions>
-			<pos name="ini" len="25" ang="0" img="foot.png" sym="false" />
+			<pos name="ini" len="25" ang="0" img="data/P1/foot.png" sym="false" />
 		      </positions>
 		      <sons></sons>
 		    </edge>

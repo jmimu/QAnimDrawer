@@ -15,7 +15,7 @@ void Skeleton::update_nodes_list()
 {
   m_nodes_list.clear();
   m_origin.get_nodes_recursive(&m_nodes_list);
-  std::cout<<m_nodes_list.size()<<" nodes found"<<std::endl;
+  //std::cout<<m_nodes_list.size()<<" nodes found"<<std::endl;
 }
 
 void Skeleton::draw(QGraphicsScene *scene)
@@ -49,7 +49,7 @@ bool Skeleton::load()
   m_positions_list.clear();
 
   QDomDocument doc( "JMskel" );
-  QFile file( "test.xml" );
+  QFile file( "test0.xml" );
   if( !file.open( QIODevice::ReadOnly ) ){
     std::cout<<"Unable to open xml file"<<std::endl;
     return false;
@@ -90,7 +90,7 @@ bool Skeleton::load()
 	m_origin.set_x(e_origin.attribute( "x", "" ).toFloat());
 	m_origin.set_y(e_origin.attribute( "y", "" ).toFloat());
 
-	std::cout<<"origin:\t"<<m_origin.x()<<"\t"<<m_origin.y()<<std::endl;
+	//std::cout<<"origin:\t"<<m_origin.x()<<"\t"<<m_origin.y()<<std::endl;
 
 	QDomNode n_origin_sons = e_origin.firstChild();
 	xml_read_edges_recursive(n_origin_sons);
@@ -127,9 +127,23 @@ bool Skeleton::save()
   QDomText versionText = doc.createTextNode("0.01");
   e_version.appendChild(versionText);
 
+  QDomElement e_skel = doc.createElement("skeleton");
+  root.appendChild(e_skel);
+
+  QDomElement e_origin = doc.createElement("origin");
+  e_skel.appendChild(e_origin);
+
+  e_origin.setAttribute( "x", m_origin.x() );
+  e_origin.setAttribute( "y", m_origin.y() );
+
+  QDomElement e_sons = doc.createElement("sons");
+  e_origin.appendChild(e_sons);
+
+
+
   std::list<Skel_Edge*>::iterator it;
   for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
-    (*it)->exportXML(doc,root);
+    (*it)->exportXML(doc,e_sons);
   }
 
   QFile file( "test0.xml" );
@@ -147,7 +161,7 @@ bool Skeleton::save()
 
 bool Skeleton::xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge)
 {
-  std::cout<<"enter xml_read_edges_recursive"<<std::endl;
+  //std::cout<<"enter xml_read_edges_recursive"<<std::endl;
 
   if (n_sons.isNull()) {
     std::cout<<"Element has no child !"<<std::endl;
@@ -172,7 +186,7 @@ bool Skeleton::xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge)
     if (current_edge == NULL) edge_tmp=new Skel_Edge(&m_origin);
     else edge_tmp=new Skel_Edge(current_edge);
 
-    std::cout<<"edge:\t"<<e_edge.attribute( "len", "" ).toFloat()<<"\t"<<e_edge.attribute( "ang", "" ).toFloat()<<std::endl;
+    //std::cout<<"edge:\t"<<e_edge.attribute( "len", "" ).toFloat()<<"\t"<<e_edge.attribute( "ang", "" ).toFloat()<<std::endl;
 
     //for each child : if positions or sons
     QDomNode n_edge_descendent = e_edge.firstChild();
@@ -195,7 +209,7 @@ bool Skeleton::xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge)
 
 bool Skeleton::xml_read_edges_pos(QDomNode n_positions,Skel_Edge *current_edge)
 {
- std::cout<<"enter xml_read_edges_pos"<<std::endl;
+  //std::cout<<"enter xml_read_edges_pos"<<std::endl;
 
   if (n_positions.isNull()) {
     std::cout<<"Element has no positions !"<<std::endl;
@@ -215,7 +229,7 @@ bool Skeleton::xml_read_edges_pos(QDomNode n_positions,Skel_Edge *current_edge)
       n_pos = n_pos.nextSibling();continue;
     }
     //new pos
-    std::cout<<"Pos name: "<<e_pos.attribute( "name", "" ).toStdString()<<std::endl;
+    //std::cout<<"Pos name: "<<e_pos.attribute( "name", "" ).toStdString()<<std::endl;
     QString pos_name=e_pos.attribute( "name", "" );
     Skel_Edge_Pos *pos = new Skel_Edge_Pos(e_pos.attribute( "name", "" ),e_pos.attribute( "len", "" ).toFloat(),e_pos.attribute( "ang", "" ).toFloat());
     bool symmetric=( e_pos.attribute( "sym", "" ) == "true" );

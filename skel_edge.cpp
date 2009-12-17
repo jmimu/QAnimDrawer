@@ -66,7 +66,7 @@ bool Skel_Edge::set_to_position(QString name)
   m_image= iter->second->image();
   m_flipY_img= iter->second->flipY_img();
   m_got_image= iter->second->got_image();
-  std::cout<<"set to position: "<<name.toStdString()<<" o"<<m_orientation<<" l"<<m_length<<std::endl;
+  //std::cout<<"set to position: "<<name.toStdString()<<" o"<<m_orientation<<" l"<<m_length<<std::endl;
   
   calc_to();
   set_length_reference();
@@ -111,9 +111,12 @@ void Skel_Edge::exportXML( QDomDocument &d,QDomElement &e)
     pos_iter->second->exportXML(d,e_positions);
   }
   
+  QDomElement e_sons = d.createElement( "sons" );
+  e_edge.appendChild(e_sons);
+
   std::list<Skel_Edge*>::iterator it;
   for( it = m_next.begin(); it != m_next.end(); ++it ) {
-    (*it)->exportXML(d,e_edge);
+    (*it)->exportXML(d,e_sons);
   }
   
 } 

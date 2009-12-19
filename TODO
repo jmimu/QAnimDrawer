@@ -1,5 +1,6 @@
 * pouvoir faire de nouvelles positions
-* enregistrer les animation
+* nbr images dans animations
+* fin des anim quand les angles dépassent final
 
 * pouvoir donner une liste d'animations pour pouvoir tout exporter (dans le XML)
 

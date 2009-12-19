@@ -39,6 +39,7 @@ private:
     QTimer *timer;///to update anim
     bool run_animation;
     int m_animation_number;//number of the image in animation
+
 };
 
 #endif // MAINWINDOW_H

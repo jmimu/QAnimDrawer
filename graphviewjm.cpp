@@ -10,7 +10,7 @@ GraphViewJM::GraphViewJM(QGraphicsScene * scene, QWidget * parent)
 }
 
 
-void GraphViewJM::ask_shot()
+void GraphViewJM::ask_shot(QString filename)
 {
     QPainter *pngPainter = new QPainter();
     QImage *image = new QImage(QSize(this->width(),this->height() ), QImage::Format_ARGB32);
@@ -20,7 +20,7 @@ void GraphViewJM::ask_shot()
     pngPainter->begin(image);
     render(pngPainter);
     pngPainter->end();
-    image->save("img.png",0,-1);
+    image->save(filename,0,-1);
     delete pngPainter;
     delete image;
 }

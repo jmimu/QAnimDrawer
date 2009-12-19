@@ -155,6 +155,7 @@ bool Skel_Edge::update_anim(double dt)
   m_orientation_reference=m_orientation;
   calc_to();
 
+  //big bug !
   bool finished = fabs(m_dest_pos->orientation() - m_orientation )<0.0001;
 
 

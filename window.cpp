@@ -4,7 +4,7 @@
 #include <iostream>
 
 //! [0]
-Window::Window():run_animation(false)
+Window::Window():run_animation(false),m_animation_number(0)
 {
   scene = new GraphSceneJM();
   graph_view = new GraphViewJM(scene);
@@ -30,7 +30,7 @@ Window::Window():run_animation(false)
   setLayout(mainLayout);
   
   setWindowTitle(tr("QAnimDrawer"));
-  QObject::connect(m_shotbutton, SIGNAL(clicked()), graph_view, SLOT(ask_shot()));
+  QObject::connect(m_shotbutton, SIGNAL(clicked()), graph_view, SLOT(ask_shot("img.png")));
   QObject::connect(m_saveposbutton, SIGNAL(clicked()), this, SLOT(save_pos()));
   QObject::connect(m_gotoposbutton, SIGNAL(clicked()), this, SLOT(goto_pos()));
 
@@ -84,12 +84,11 @@ void Window::goto_pos()//begin animation
 
   //see if needs to save it to files :
   if (m_animfile_edit->text()!=""){
-    m_animation_number=0;
+    m_animation_number=1001;
     //shot
-    QString filename=QString::number(m_animation_number,4);//how to add leading zeros ?
-    filename=m_animfile_edit->text()+filename+".png";
+    QString filename=QString::number(m_animation_number);//how to add leading zeros ?
+    filename="out/"+m_animfile_edit->text()+filename+".png";
     std::cout<<"Write to "<<filename.toStdString()<<std::endl;
-
     graph_view->ask_shot(filename);
   }
 
@@ -99,16 +98,29 @@ void Window::timer_timeout()
 {
   //std::cout<<"BIP"<<std::endl;
   if (run_animation){
-    scene->draw_skel();
 
-    if (scene->get_skel()->update_anim(0.02)) {
+    run_animation=!(scene->get_skel()->update_anim(0.05));
+
+    scene->draw_skel();
+    //save img
+    if (m_animation_number>0) {
+      m_animation_number+=1;
+      QString filename=QString::number(m_animation_number);//how to add leading zeros ?
+      filename="out/"+m_animfile_edit->text()+filename+".png";
+      std::cout<<"Write to "<<filename.toStdString()<<std::endl;
+      graph_view->ask_shot(filename);
+    }
+    
+    if (!run_animation) {
       run_animation=false;
       std::cout<<"Animation finished"<<std::endl;
-      timer->stop();
+      timer->stop();m_animation_number=0;
     } else {
       timer->start(TIMER_TIME);
       //std::cout<<"run_animation=true;"<<std::endl;
     }
+
+
   }
 }
 

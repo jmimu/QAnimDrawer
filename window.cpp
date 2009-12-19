@@ -15,7 +15,7 @@ Window::Window():run_animation(false)
   m_gotoposbutton = new QPushButton("Goto Pos:", this);
   m_pos_list = new QComboBox(this);
   m_destpos_list = new QComboBox(this);
-
+  m_animfile_edit = new QLineEdit(this);
   QGridLayout *mainLayout = new QGridLayout;
   mainLayout->addWidget(graph_view,1,1,10,2);
   mainLayout->addWidget(m_shotbutton,1,3);
@@ -25,6 +25,7 @@ Window::Window():run_animation(false)
   mainLayout->addWidget(m_delposbutton,5,3);
   mainLayout->addWidget(m_gotoposbutton,6,3);
   mainLayout->addWidget(m_destpos_list,7,3);
+  mainLayout->addWidget(m_animfile_edit,8,3);
 
   setLayout(mainLayout);
   
@@ -80,6 +81,18 @@ void Window::goto_pos()//begin animation
 
   timer->start(TIMER_TIME);
   run_animation=true;
+
+  //see if needs to save it to files :
+  if (m_animfile_edit->text()!=""){
+    m_animation_number=0;
+    //shot
+    QString filename=QString::number(m_animation_number,4);//how to add leading zeros ?
+    filename=m_animfile_edit->text()+filename+".png";
+    std::cout<<"Write to "<<filename.toStdString()<<std::endl;
+
+    graph_view->ask_shot(filename);
+  }
+
 }
 
 void Window::timer_timeout()
@@ -87,6 +100,7 @@ void Window::timer_timeout()
   //std::cout<<"BIP"<<std::endl;
   if (run_animation){
     scene->draw_skel();
+
     if (scene->get_skel()->update_anim(0.02)) {
       run_animation=false;
       std::cout<<"Animation finished"<<std::endl;

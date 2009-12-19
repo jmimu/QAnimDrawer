@@ -6,6 +6,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QComboBox>
+#include <QLineEdit>
 #include "graphscenejm.h"
 #include "graphviewjm.h"
 
@@ -34,9 +35,10 @@ private:
     GraphViewJM *graph_view;
     QComboBox *m_pos_list;
     QComboBox *m_destpos_list;//destination pos
-
+    QLineEdit *m_animfile_edit;
     QTimer *timer;///to update anim
     bool run_animation;
+    int m_animation_number;//number of the image in animation
 };
 
 #endif // MAINWINDOW_H

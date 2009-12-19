@@ -1,6 +1,7 @@
 * pouvoir faire de nouvelles positions
-* faire les animation
+* enregistrer les animation
 
+* pouvoir donner une liste d'animations pour pouvoir tout exporter (dans le XML)
 
 Animations :
 * faire une classe héritant de Skel_Edge avec en plus pos_init et pos_final et peut-être une vitesse ?

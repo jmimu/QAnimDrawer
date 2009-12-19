@@ -31,6 +31,9 @@ public:
     bool set_to_position(QString name);
     bool save_position(QString name);
     std::set <QString> * get_positions_list(){return &m_positions_list;}
+
+    bool set_origin_dest_pos(QString originposname,QString destposname);
+    bool update_anim(double dt);
 protected:
     Skel_Node m_origin;
     std::list <Skel_Node *> m_nodes_list;

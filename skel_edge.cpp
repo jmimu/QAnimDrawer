@@ -6,7 +6,7 @@
 
 
 Skel_Edge::Skel_Edge(Skel_Node *root,double length,double orientation)
-  : m_orientation(orientation),m_orientation_reference(orientation),m_length(length),m_max_length(length),m_min_length(length),m_from(root),m_to(NULL),m_previous(NULL),m_next(),m_got_image(false),m_image(NULL)
+  : m_orientation(orientation),m_orientation_reference(orientation),m_length(length),m_max_length(length),m_min_length(length),m_from(root),m_to(NULL),m_previous(NULL),m_next(),m_got_image(false),m_image(NULL),m_origin_pos(NULL),m_dest_pos(NULL)
 {
   m_to=new Skel_Node(0,0,this);
   calc_to();
@@ -14,7 +14,7 @@ Skel_Edge::Skel_Edge(Skel_Node *root,double length,double orientation)
 }
 
 Skel_Edge::Skel_Edge(Skel_Edge *previous,double length,double orientation)
-  : m_orientation(orientation),m_orientation_reference(orientation),m_length(length),m_max_length(length),m_min_length(length),m_from(previous->to()),m_to(NULL),m_previous(previous),m_next(),m_got_image(false),m_image(NULL)
+  : m_orientation(orientation),m_orientation_reference(orientation),m_length(length),m_max_length(length),m_min_length(length),m_from(previous->to()),m_to(NULL),m_previous(previous),m_next(),m_got_image(false),m_image(NULL),m_origin_pos(NULL),m_dest_pos(NULL)
 {
   m_to=new Skel_Node(0,0,this);
   calc_to();
@@ -119,4 +119,51 @@ void Skel_Edge::exportXML( QDomDocument &d,QDomElement &e)
     (*it)->exportXML(d,e_sons);
   }
   
-} 
+}
+ 
+//recursive
+bool Skel_Edge::set_origin_dest_pos(QString originname,QString destinationname)
+{
+  std::map<QString,Skel_Edge_Pos*>::iterator iter = m_pos_list.find(destinationname);
+  if (iter == m_pos_list.end()) {
+    return false;
+  }
+  m_dest_pos=iter->second;
+  iter = m_pos_list.find(originname);
+  if (iter == m_pos_list.end()) {
+    return false;
+  }
+  m_origin_pos=iter->second;
+  
+  set_to_position(originname);
+
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_next.begin(); it != m_next.end(); ++it ) {
+    (*it)->set_origin_dest_pos(originname,destinationname);
+  }  
+  
+  return true;
+}
+
+//recursive
+//time = 1 for the whole animation
+bool Skel_Edge::update_anim(double dt)
+{
+  double ang_speed=m_dest_pos->orientation()-m_origin_pos->orientation();
+  
+  m_orientation+=ang_speed*dt;
+  m_orientation_reference=m_orientation;
+  calc_to();
+
+  bool finished = fabs(m_dest_pos->orientation() - m_orientation )<0.0001;
+
+
+  
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_next.begin(); it != m_next.end(); ++it ) {
+    finished = (*it)->update_anim(dt) && finished ;
+  }  
+  
+  //std::cout<<"finished : "<<finished<<std::endl;
+  return finished;
+}

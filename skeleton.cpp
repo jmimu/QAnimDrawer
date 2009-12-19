@@ -247,3 +247,23 @@ bool Skeleton::xml_read_edges_pos(QDomNode n_positions,Skel_Edge *current_edge)
 
   return true;
 }
+
+bool Skeleton::set_origin_dest_pos(QString originposname,QString destposname)
+{
+
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
+    (*it)->set_origin_dest_pos(originposname,destposname);
+  }
+  return true;
+}
+
+bool Skeleton::update_anim(double dt)
+{
+  bool finished =true;
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
+    finished = (*it)->update_anim(dt) && finished;
+  }
+  return finished;
+}

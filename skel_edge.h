@@ -31,9 +31,11 @@ public:
   double length(){return m_length;}
   int flipY_img(){return m_flipY_img;}
   bool set_to_position(QString name);
+  bool set_origin_dest_pos(QString originname,QString destinationname);
   bool save_position(QString name);
   void add_position(QString pos_name,Skel_Edge_Pos* pos){m_pos_list.insert(std::make_pair(pos_name,pos));}
   void exportXML( QDomDocument &d,QDomElement &e);
+  bool update_anim(double dt);
 protected:
   //current data
   double m_orientation;
@@ -51,7 +53,9 @@ protected:
   int m_flipY_img;
 
   std::map <QString,Skel_Edge_Pos*> m_pos_list;
-  
+  //for animation
+  Skel_Edge_Pos* m_origin_pos;
+  Skel_Edge_Pos* m_dest_pos;
 };
 
 #endif // SKEL_EDGE_H

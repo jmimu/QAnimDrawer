@@ -36,6 +36,7 @@ void Skel_Node::draw_recursive(QGraphicsScene *scene)
       item->scale(scaleX,scaleY);
       item->moveBy(scaleY*decalY*sin(-angle)+scaleX*decalX*cos(angle) + (*it)->from()->x(),
 		   scaleY*decalY*cos(-angle)+scaleX*decalX*sin(angle) + (*it)->from()->y());
+      item->setZValue((*it)->get_z());
 
       //std::cout<<"pic : "<<(*it)->from()->x()<<"  "<<(*it)->from()->y()<<"  "<<(*it)->orientation()<<std::endl;
 

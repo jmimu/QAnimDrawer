@@ -42,6 +42,15 @@ bool Skeleton::save_position(QString name)
   return true;
 }
 
+bool Skeleton::del_position(QString name)
+{
+  std::list<Skel_Edge*>::iterator it;
+  for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
+    (*it)->del_position(name);
+  }
+  m_positions_list.erase(name);
+  return true;
+}
 
 bool Skeleton::load()
 {
@@ -182,9 +191,11 @@ bool Skeleton::xml_read_edges_recursive(QDomNode n_sons,Skel_Edge *current_edge)
     }
     //new edge
     Skel_Edge *edge_tmp;
+    QString edge_name=e_edge.attribute( "name", "" );
+    float z=e_edge.attribute( "z", "" ).toFloat();
 
-    if (current_edge == NULL) edge_tmp=new Skel_Edge(&m_origin);
-    else edge_tmp=new Skel_Edge(current_edge);
+    if (current_edge == NULL) edge_tmp=new Skel_Edge(&m_origin,edge_name,z);
+    else edge_tmp=new Skel_Edge(current_edge,edge_name,z);
 
     //std::cout<<"edge:\t"<<e_edge.attribute( "len", "" ).toFloat()<<"\t"<<e_edge.attribute( "ang", "" ).toFloat()<<std::endl;
 
@@ -255,15 +266,14 @@ bool Skeleton::set_origin_dest_pos(QString originposname,QString destposname)
   for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
     (*it)->set_origin_dest_pos(originposname,destposname);
   }
+  set_to_position(originposname);
   return true;
 }
 
-bool Skeleton::update_anim(double dt)
+void Skeleton::update_anim(double dt)
 {
-  bool finished =true;
   std::list<Skel_Edge*>::iterator it;
   for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
-    finished = (*it)->update_anim(dt) && finished;
+    (*it)->update_anim(dt);
   }
-  return finished;
 }

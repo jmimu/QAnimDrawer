@@ -8,7 +8,7 @@
 Skel_Edge_Pos::Skel_Edge_Pos(QString name,double length,double orientation)
   : m_orientation(orientation),m_length(length),m_got_image(false),m_image(),m_name(name),m_image_filename("")
 {
-  //std::cout<<"make Position: "<<name.toStdString()<<" "<<orientation<<" "<<length<<std::endl;
+  std::cout<<"make Position: "<<name.toStdString()<<" "<<orientation<<" "<<length<<std::endl;
 }
 
 bool Skel_Edge_Pos::add_image(QString filename,bool flipY)

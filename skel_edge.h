@@ -14,8 +14,8 @@
 class Skel_Edge
 {
 public:
-  Skel_Edge(Skel_Node *root,double length=1.0,double orientation=0.0); //orientation in degrees
-  Skel_Edge(Skel_Edge *previous,double length=1.0,double orientation=0.0); //orientation in degrees
+  Skel_Edge(Skel_Node *root,QString name,float z,double length=1.0,double orientation=0.0); //orientation in degrees
+  Skel_Edge(Skel_Edge *previous,QString name,float z,double length=1.0,double orientation=0.0); //orientation in degrees
   void calc_to();
   Skel_Node * from(){return m_from;}
   Skel_Node * to(){return m_to;}
@@ -33,11 +33,15 @@ public:
   bool set_to_position(QString name);
   bool set_origin_dest_pos(QString originname,QString destinationname);
   bool save_position(QString name);
+  bool del_position(QString name);
   void add_position(QString pos_name,Skel_Edge_Pos* pos){m_pos_list.insert(std::make_pair(pos_name,pos));}
   void exportXML( QDomDocument &d,QDomElement &e);
-  bool update_anim(double dt);
+  void update_anim(double dt);
+  float get_z(){return m_z;}
 protected:
   //current data
+  QString m_edgename;
+  float m_z;
   double m_orientation;
   double m_orientation_reference;
   double m_length;

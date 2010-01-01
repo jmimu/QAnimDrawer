@@ -1,19 +1,17 @@
-* pouvoir faire de nouvelles positions
-* nbr images dans animations
-* fin des anim quand les angles dépassent final
-
-* pouvoir donner une liste d'animations pour pouvoir tout exporter (dans le XML)
-
-Animations :
-* faire une classe héritant de Skel_Edge avec en plus pos_init et pos_final et peut-être une vitesse ?
-* Comment utiliser ça ? autre programme ? autre fenêtre ?
+Urgent :
+* Faire que l'animation touche bien les longueurs et les images aussi
 
 Petits :
 * quand on déplace un point, choix si ça affecte les descendants ou pas
 * mettre des limites d'angles et de longueur ?
 * Permettre de changer les 2 dimensions des images ?
+* mettre la taille de l'image de sortie dans le XML ?
+* nbr images dans animations
+* renommer une position ?
+* il se passe quoi si il manque un champ name ou z ?
 
 Gros :
+* pouvoir donner une liste d'animations pour pouvoir tout exporter (dans le XML)
 * Ecrire un fichier XML avec les animations : http://www.digitalfanatics.org/projects/qt_tutorial/chapter09.html
 * Gérer le Z ? => nécessaire
 * Enregister des positions-clé

@@ -6,7 +6,7 @@
 GraphViewJM::GraphViewJM(QGraphicsScene * scene, QWidget * parent)
   : QGraphicsView(scene,parent)
 {
-
+  setSceneRect(-128,-128,256,256);
 }
 
 

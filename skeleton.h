@@ -23,8 +23,8 @@ class Skeleton
 public:
     Skeleton();
     
-    bool load();
-    bool save();
+    bool load(QString filename);
+    bool save(QString filename);
     void draw(QGraphicsScene *scene);
     void update_nodes_list();
     std::list <Skel_Node *> * get_nodes_list(){return &m_nodes_list;}
@@ -34,7 +34,7 @@ public:
     std::set <QString> * get_positions_list(){return &m_positions_list;}
 
     bool set_origin_dest_pos(QString originposname,QString destposname);
-    void update_anim(double dt);
+    void update_anim(double dt,double total_time);
 protected:
     Skel_Node m_origin;
     std::list <Skel_Node *> m_nodes_list;

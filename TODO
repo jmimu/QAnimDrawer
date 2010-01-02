@@ -9,6 +9,7 @@ Petits :
 * nbr images dans animations
 * renommer une position ?
 * il se passe quoi si il manque un champ name ou z ?
+* faire de la doc (surtout pour la création d'images)
 
 Gros :
 * pouvoir donner une liste d'animations pour pouvoir tout exporter (dans le XML)

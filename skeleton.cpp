@@ -52,13 +52,13 @@ bool Skeleton::del_position(QString name)
   return true;
 }
 
-bool Skeleton::load()
+bool Skeleton::load(QString filename)
 {
   std::cout<<"Begin load..."<<std::endl;
   m_positions_list.clear();
 
   QDomDocument doc( "JMskel" );
-  QFile file( "test1.xml" );
+  QFile file( filename );
   if( !file.open( QIODevice::ReadOnly ) ){
     std::cout<<"Unable to open xml file"<<std::endl;
     return false;
@@ -117,19 +117,13 @@ bool Skeleton::load()
 }
 
 
-bool Skeleton::save()
+bool Skeleton::save(QString filename)
 {
   std::cout<<"Write file"<<std::endl;
 
   QDomDocument doc( "JMskel" );
   QDomElement root = doc.createElement( "QAnimDrawer" );
   doc.appendChild( root );
-
-  /*  Contact c;
-  c.name = "Kal";
-  c.eMail = "kal@goteborg.se";
-  c.phone = "+46(0)31 123 4567";
-  root.appendChild( ContactToNode( doc, c ) );*/
 
   QDomElement e_version = doc.createElement("version");
   root.appendChild(e_version);
@@ -155,7 +149,7 @@ bool Skeleton::save()
     (*it)->exportXML(doc,e_sons);
   }
 
-  QFile file( "test1.xml" );
+  QFile file( filename );
   if( !file.open( QIODevice::WriteOnly ) )
     return false;
 
@@ -270,10 +264,10 @@ bool Skeleton::set_origin_dest_pos(QString originposname,QString destposname)
   return true;
 }
 
-void Skeleton::update_anim(double dt)
+void Skeleton::update_anim(double dt,double total_time)
 {
   std::list<Skel_Edge*>::iterator it;
   for( it = m_origin.from_of()->begin(); it != m_origin.from_of()->end(); ++it ) {
-    (*it)->update_anim(dt);
+    (*it)->update_anim(dt,total_time);
   }
 }

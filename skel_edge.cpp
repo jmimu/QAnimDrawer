@@ -53,22 +53,30 @@ bool Skel_Edge::set_to_position(QString name)
   std::map<QString,Skel_Edge_Pos*>::iterator iter = m_pos_list.find(name);
   if (iter == m_pos_list.end()) {
     //create the pos
-    //get the first position
-    Skel_Edge_Pos *first_pos = m_pos_list.begin()->second;
-    Skel_Edge_Pos *pos = new Skel_Edge_Pos(name,first_pos->length(),first_pos->orientation());
-    if (first_pos->got_image()) {
+    //get the first position (old method)
+    //Skel_Edge_Pos *first_pos = m_pos_list.begin()->second;
+    //Skel_Edge_Pos *pos = new Skel_Edge_Pos(name,first_pos->length(),first_pos->orientation()); //copy first position
+    /*if (first_pos->got_image()) {
       pos->add_image(first_pos->get_image_filename(),first_pos->flipY_img()!=1);
+      }*/
+    Skel_Edge_Pos *pos = new Skel_Edge_Pos(name,m_length,m_orientation);
+    if (got_image()) {
+      pos->add_image(get_image_filename(),flipY_img()!=1);
     }
     iter =( m_pos_list.insert(std::make_pair(name,pos)) ).first;
-  }
-  m_orientation= iter->second->orientation();
-  m_length= iter->second->length();
-  m_image= iter->second->image();
-  m_flipY_img= iter->second->flipY_img();
-  m_got_image= iter->second->got_image();
-  //std::cout<<"set to position: "<<name.toStdString()<<" o"<<m_orientation<<" l"<<m_length<<std::endl;
   
-  calc_to();
+  }else{//do not make calc_to if new position
+
+    m_orientation= iter->second->orientation();
+    m_length= iter->second->length();
+    m_image= iter->second->image();
+    m_image_filename = iter->second->get_image_filename();
+    m_flipY_img= iter->second->flipY_img();
+    m_got_image= iter->second->got_image();
+    //std::cout<<"set to position: "<<name.toStdString()<<" o"<<m_orientation<<" l"<<m_length<<std::endl;
+
+    calc_to();
+  }
   set_length_reference();
   set_orientation_reference();
   
@@ -168,17 +176,29 @@ bool Skel_Edge::set_origin_dest_pos(QString originname,QString destinationname)
 
 //recursive
 //time = 1 for the whole animation
-void Skel_Edge::update_anim(double dt)
+void Skel_Edge::update_anim(double dt,double total_time)
 {
   double ang_speed=m_dest_pos->orientation()-m_origin_pos->orientation();
+  double len_speed=m_dest_pos->length()-m_origin_pos->length();
   
   m_orientation+=ang_speed*dt;
-  m_orientation_reference=m_orientation;
+  m_orientation_reference=m_orientation; 
+  m_length+=len_speed*dt;
+  m_length_reference=m_length;
   calc_to();
+
+  if (m_dest_pos->get_image_filename() != get_image_filename() && (total_time>0.5)) {
+    if (m_dest_pos->got_image()) {
+      m_image= m_dest_pos ->image();
+      m_image_filename = m_dest_pos->get_image_filename();
+      m_flipY_img= m_dest_pos->flipY_img();
+      m_got_image= m_dest_pos->got_image(); 
+    }
+  }
 
   std::list<Skel_Edge*>::iterator it;
   for( it = m_next.begin(); it != m_next.end(); ++it ) {
-    (*it)->update_anim(dt);
+    (*it)->update_anim(dt,total_time);
   }  
   
 }

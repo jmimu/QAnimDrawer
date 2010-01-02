@@ -3,6 +3,8 @@
 
 #define TIMER_TIME 20
 
+#define ANIM_SPEED 0.1
+
 #include <QWidget>
 #include <QPushButton>
 #include <QComboBox>
@@ -16,7 +18,7 @@ class Window : public QWidget
   Q_OBJECT
 
 public:
-  Window();
+  Window(QString filename);
 
   void update_pos_list();
   void enable_all(bool enable);
@@ -28,6 +30,7 @@ public slots:
   void goto_pos();//begin animation
   void new_pos();
   void timer_timeout();
+  void write_file();
 
 private:
   QPushButton *m_shotbutton;
@@ -42,6 +45,9 @@ private:
   QComboBox *m_destpos_list;//destination pos
   QLabel *m_animfile_label;
   QLineEdit *m_animfile_edit;
+
+  QPushButton *m_writefilebutton;
+
   QTimer *timer;///to update anim
   bool run_animation;
   int m_animation_number;//number of the image in animation

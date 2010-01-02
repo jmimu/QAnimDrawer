@@ -10,7 +10,7 @@ class GraphSceneJM: public QGraphicsScene
   Q_OBJECT
     
   public:
-    GraphSceneJM(QWidget * parent = 0);
+  GraphSceneJM(QString filename,QWidget * parent);
     void draw_skel();
     Skeleton * get_skel(){return &skel;}
   

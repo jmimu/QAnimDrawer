@@ -2,11 +2,12 @@
 
 #include "window.h"
 #include <iostream>
+#include <QFileDialog>
 
 //! [0]
-Window::Window():run_animation(false),m_animation_number(0),anim_time(0.0)
+Window::Window(QString filename):run_animation(false),m_animation_number(0),anim_time(0.0)
 {
-  scene = new GraphSceneJM();
+  scene = new GraphSceneJM(filename,this);
   graph_view = new GraphViewJM(scene);
   m_shotbutton = new QPushButton("Shot", this);
   m_saveposbutton = new QPushButton("Save Pos", this);
@@ -18,6 +19,9 @@ Window::Window():run_animation(false),m_animation_number(0),anim_time(0.0)
   m_destpos_list = new QComboBox(this);
   m_animfile_label = new QLabel("Save as:",this);
   m_animfile_edit = new QLineEdit(this);
+
+  m_writefilebutton = new QPushButton("Write File", this);
+
   QGridLayout *mainLayout = new QGridLayout;
   mainLayout->addWidget(graph_view,1,1,10,2);
   mainLayout->addWidget(m_shotbutton,1,3,1,2);
@@ -34,16 +38,20 @@ Window::Window():run_animation(false),m_animation_number(0),anim_time(0.0)
   mainLayout->addWidget(m_animfile_label,7,3,1,1);
   mainLayout->addWidget(m_animfile_edit,7,4,1,1);
 
+  mainLayout->addWidget(m_writefilebutton,8,3,1,2);
+
   setLayout(mainLayout);
   
   setWindowTitle(tr("QAnimDrawer"));
-  QObject::connect(m_shotbutton, SIGNAL(clicked()), graph_view, SLOT(ask_shot("img.png")));
+  QObject::connect(m_shotbutton, SIGNAL(clicked()), graph_view, SLOT(ask_shot()));
   QObject::connect(m_saveposbutton, SIGNAL(clicked()), this, SLOT(save_pos()));
   QObject::connect(m_delposbutton, SIGNAL(clicked()), this, SLOT(del_pos()));
   QObject::connect(m_gotoposbutton, SIGNAL(clicked()), this, SLOT(goto_pos()));
   QObject::connect(m_newposbutton, SIGNAL(clicked()), this, SLOT(new_pos()));
 
   QObject::connect(m_pos_list, SIGNAL(currentIndexChanged(int)), this, SLOT(change_pos(int)));
+
+  QObject::connect(m_writefilebutton, SIGNAL(clicked()), this, SLOT(write_file()));
 
   scene->draw_skel();
   
@@ -79,28 +87,42 @@ void Window::enable_all(bool enable)
   m_destpos_list->setEnabled(enable);
   m_animfile_label->setEnabled(enable);
   m_animfile_edit->setEnabled(enable);
+  m_writefilebutton->setEnabled(enable);
 }
 
 void Window::change_pos(int index)
 {
-  std::cout<<"Change to position: "<<m_pos_list->itemText(index).toStdString()<<std::endl;
-  scene->get_skel()->set_to_position(m_pos_list->itemText(index));
-
-  scene->draw_skel();
+  if (m_pos_list->itemText(index) != "") {
+    std::cout<<"Change to position: "<<m_pos_list->itemText(index).toStdString()<<std::endl;
+    scene->get_skel()->set_to_position(m_pos_list->itemText(index));
+    scene->draw_skel();
+  }
 }
 
 void Window::save_pos()
 {
   std::cout<<"Save position: "<<m_pos_list->currentText().toStdString()<<std::endl;
   scene->get_skel()->save_position(m_pos_list->currentText());
-  scene->get_skel()->save();
+  //scene->get_skel()->save();
+}
+
+void Window::write_file()
+{
+  QString filename="noname";
+  
+  filename = QFileDialog::getSaveFileName(this,tr("Write Skeleton"), ".", tr("XML Files (*.xml)"));
+
+  if (filename!="") {
+    std::cout<<"Save file: "<<filename.toStdString()<<std::endl;
+    scene->get_skel()->save(filename);
+  }
 }
 
 void Window::del_pos()
 {
   std::cout<<"Del position: "<<m_pos_list->currentText().toStdString()<<std::endl;
   scene->get_skel()->del_position(m_pos_list->currentText());
-  scene->get_skel()->save();
+  //scene->get_skel()->save();
   update_pos_list();
 }
 
@@ -130,8 +152,8 @@ void Window::timer_timeout()
   //std::cout<<"BIP"<<std::endl;
   if (run_animation){
 
-    scene->get_skel()->update_anim(0.05);
-    anim_time+=0.05;
+    scene->get_skel()->update_anim(ANIM_SPEED,anim_time);
+    anim_time+=ANIM_SPEED;
 
     run_animation=anim_time<1.0;
 
@@ -174,8 +196,13 @@ void Window::new_pos()
   QString posname=m_newposname_edit->text();
   std::cout<<"New position: "<<posname.toStdString()<<std::endl;
   scene->get_skel()->set_to_position(posname);
-  scene->get_skel()->get_positions_list()->insert(posname);
-  update_pos_list();
   scene->get_skel()->save_position(posname);
-  scene->get_skel()->save();
+  scene->get_skel()->get_positions_list()->insert(posname);
+  
+  update_pos_list();
+
+  m_pos_list->setCurrentIndex(m_pos_list->count()-1);
+
+  //scene->get_skel()->save();
 }
+

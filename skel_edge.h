@@ -11,6 +11,7 @@
 #include <map>
 #include <QtXml/QDomDocument>
 
+
 class Skel_Edge
 {
 public:
@@ -24,19 +25,20 @@ public:
   bool got_image(){return m_got_image;}
   QPixmap * image(){if (m_got_image) return m_image; else return NULL;}
   double orientation(){return m_orientation;}
-  void set_orientation_delta(double delta_orient){m_orientation=m_orientation_reference+delta_orient;calc_to();}
+  void set_orientation_delta(double delta_orient){    m_orientation=m_orientation_reference+delta_orient;calc_to();  }
   void set_length_delta(double delta_len){m_length=m_length_reference+delta_len;calc_to();}
   void set_orientation_reference();
   void set_length_reference(){m_length_reference=m_length;}
   double length(){return m_length;}
   int flipY_img(){return m_flipY_img;}
+  QString get_image_filename(){return m_image_filename;}
   bool set_to_position(QString name);
   bool set_origin_dest_pos(QString originname,QString destinationname);
   bool save_position(QString name);
   bool del_position(QString name);
   void add_position(QString pos_name,Skel_Edge_Pos* pos){m_pos_list.insert(std::make_pair(pos_name,pos));}
   void exportXML( QDomDocument &d,QDomElement &e);
-  void update_anim(double dt);
+  void update_anim(double dt,double total_time);
   float get_z(){return m_z;}
 protected:
   //current data
@@ -54,6 +56,7 @@ protected:
   std::list <Skel_Edge *> m_next;
   bool m_got_image;
   QPixmap *m_image;
+  QString m_image_filename;
   int m_flipY_img;
 
   std::map <QString,Skel_Edge_Pos*> m_pos_list;

@@ -11,25 +11,25 @@
      </positions>
      <sons/>
     </edge>
-    <edge z="0" name="shoulder_r" >
+    <edge z="1" name="shoulder_r" >
      <positions>
       <pos sym="true" ang="-170" name="bonjour" img="data/P01/arm.png" len="30" />
       <pos sym="true" ang="-180" name="ini" img="data/P01/arm.png" len="30" />
      </positions>
      <sons>
-      <edge z="0" name="arm_r" >
+      <edge z="2" name="arm_r" >
        <positions>
         <pos sym="true" ang="-117" name="bonjour" img="data/P01/arm.png" len="35" />
         <pos sym="true" ang="-150" name="ini" img="data/P01/arm.png" len="35" />
        </positions>
        <sons>
-        <edge z="0" name="forearm_r" >
+        <edge z="3" name="forearm_r" >
          <positions>
           <pos sym="true" ang="-42" name="bonjour" img="data/P01/forearm.png" len="35" />
           <pos sym="true" ang="-140" name="ini" img="data/P01/forearm.png" len="35" />
          </positions>
          <sons>
-          <edge z="0" name="hand_r" >
+          <edge z="4" name="hand_r" >
            <positions>
             <pos sym="true" ang="-52" name="bonjour" img="data/P01/hand.png" len="25" />
             <pos sym="true" ang="-150" name="ini" img="data/P01/hand.png" len="25" />
@@ -42,25 +42,25 @@
       </edge>
      </sons>
     </edge>
-    <edge z="0" name="shoulder_l" >
+    <edge z="1" name="shoulder_l" >
      <positions>
       <pos sym="false" ang="0" name="bonjour" img="data/P01/arm.png" len="30" />
       <pos sym="false" ang="0" name="ini" img="data/P01/arm.png" len="30" />
      </positions>
      <sons>
-      <edge z="0" name="arm_l" >
+      <edge z="2" name="arm_l" >
        <positions>
         <pos sym="false" ang="-30" name="bonjour" img="data/P01/arm.png" len="30" />
         <pos sym="false" ang="-30" name="ini" img="data/P01/arm.png" len="30" />
        </positions>
        <sons>
-        <edge z="0" name="forearm_l" >
+        <edge z="3" name="forearm_l" >
          <positions>
           <pos sym="false" ang="-79" name="bonjour" img="data/P01/forearm.png" len="35" />
           <pos sym="false" ang="-40" name="ini" img="data/P01/forearm.png" len="35" />
          </positions>
          <sons>
-          <edge z="0" name="hand_l" >
+          <edge z="4" name="hand_l" >
            <positions>
             <pos sym="false" ang="-119" name="bonjour" img="data/P01/hand.png" len="25" />
             <pos sym="false" ang="-80" name="ini" img="data/P01/hand.png" len="25" />
@@ -79,7 +79,7 @@
       <pos sym="false" ang="90" name="ini" img="data/P01/body.png" len="50" />
      </positions>
      <sons>
-      <edge z="0" name="thigh_r" >
+      <edge z="3" name="thigh_r" >
        <positions>
         <pos sym="true" ang="93" name="bonjour" img="data/P01/leg.png" len="40" />
         <pos sym="true" ang="120" name="ini" img="data/P01/leg.png" len="40" />
@@ -91,7 +91,7 @@
           <pos sym="true" ang="90" name="ini" img="data/P01/leg2.png" len="50" />
          </positions>
          <sons>
-          <edge z="0" name="foot_r" >
+          <edge z="10" name="foot_r" >
            <positions>
             <pos sym="true" ang="-243" name="bonjour" img="data/P01/foot.png" len="25" />
             <pos sym="true" ang="-180" name="ini" img="data/P01/foot.png" len="25" />
@@ -102,19 +102,19 @@
         </edge>
        </sons>
       </edge>
-      <edge z="0" name="thigh_l" >
+      <edge z="4" name="thigh_l" >
        <positions>
         <pos sym="false" ang="-12" name="bonjour" img="data/P01/leg.png" len="40" />
         <pos sym="false" ang="60" name="ini" img="data/P01/leg.png" len="40" />
        </positions>
        <sons>
-        <edge z="0" name="leg_l" >
+        <edge z="1" name="leg_l" >
          <positions>
           <pos sym="false" ang="70" name="bonjour" img="data/P01/leg2.png" len="50" />
           <pos sym="false" ang="90" name="ini" img="data/P01/leg2.png" len="50" />
          </positions>
          <sons>
-          <edge z="0" name="foot_l" >
+          <edge z="11" name="foot_l" >
            <positions>
             <pos sym="false" ang="-20" name="bonjour" img="data/P01/foot.png" len="25" />
             <pos sym="false" ang="0" name="ini" img="data/P01/foot.png" len="25" />

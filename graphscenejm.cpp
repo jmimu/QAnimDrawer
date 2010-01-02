@@ -4,11 +4,11 @@
 #include <iostream>
 #include <math.h>
 
-GraphSceneJM::GraphSceneJM(QWidget * parent)
+GraphSceneJM::GraphSceneJM(QString filename,QWidget * parent)
   : QGraphicsScene(parent),skel(),node_selection(NULL),x_begin_right_click(0),y_begin_right_click(0)
 {
   //std::cout<<"_!"<<std::endl;
-  skel.load();
+  skel.load(filename);
   setBackgroundBrush(Qt::white);
 
 }
@@ -81,6 +81,8 @@ void GraphSceneJM::draw_skel()
   if (node_selection != NULL){
     //std::cout<<"sel: "<<node_selection->x()<<" "<<node_selection->y()<<std::endl;
     QPen pen(Qt::green, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    addEllipse(node_selection->x()-10,node_selection->y()-10 , 20, 20, pen);
+    QGraphicsEllipseItem * circle = addEllipse(node_selection->x()-10,node_selection->y()-10 , 20, 20, pen);
+    circle->setZValue(100000);//to be above everything
+
   }
 }

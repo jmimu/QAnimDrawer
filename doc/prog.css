@@ -1,0 +1,85 @@
+h1
+{
+	text-align: center; 
+	color: #4F1824;
+	font-family: Arial, "Arial Black","Times New Roman", Verdana, serif;
+	font-size: 30px;
+	font-variant: small-caps;
+}
+
+h3
+{
+	color: #7F1824;
+	font-family: Arial, "Arial Black","Times New Roman", Verdana, serif;
+	font-size: 20px;
+	font-style: bold;
+}
+
+body 
+{
+   background-color: #89B3CB; 
+   /*color: white; /* Le texte de la page sera blanc */
+   background-image:url("ph.jpg");
+   width:1000px;
+   margin: auto; 
+}
+
+table.steps /* Le tableau en lui-même */
+{
+   /*border: 2px solid;*/
+   /*margin: auto; /* Centre le tableau */
+   border: 2px outset #553A59; /* Bordure du tableau avec effet 3D (outset)  #553A59*/
+   border-collapse: collapse; /* Colle les bordures entre elles */
+   width:100%;
+}
+
+caption
+{
+	text-align: center; 
+	color: #BB5E1E;
+	font-family: Arial, "Arial Black","Times New Roman", Verdana, serif;
+	font-size: 25px;
+	font-style: italic;
+	/*text-transform: capitalize; /* Les premières lettres des mots du titre seront en majuscules */
+	text-decoration: underline;
+	margin-bottom: 20px; /* Pour éviter que le titre ne soit trop collé au tableau en-dessous */
+
+}
+
+td
+{
+	border-width:1px;
+	border-style:solid; 
+	border-color: #553A59;
+	/*margin: auto; */
+	padding: 5px;
+	width:50%;
+}
+p
+{
+	margin-left: 20px;
+	margin-right: 20px;
+	text-indent: 30px;
+	font-size: 18px;
+	text-align: justify; 
+}
+dt
+{
+	font-family: Arial, "Arial Black","Times New Roman", Verdana, serif;
+	font-size: 25px;
+	font-style: italic;
+	text-transform: capitalize; /* Les premières lettres des mots du titre seront en majuscules */
+	margin-bottom: 20px; /* Pour éviter que les titres ne soit trop collés */
+	text-indent: 30px;
+}
+
+.changed
+{
+	color: #9B380D;
+}
+
+.center
+{
+	display: block; /*pour pouvoir utiliser margin: auto; pour centrer*/
+	margin: auto;
+}

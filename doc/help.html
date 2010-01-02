@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+  <title>QAnimDrawer Help</title>
+  <link rel="stylesheet" media="screen" type="text/css" title="Design" href="prog.css" />   
+</head>
+
+<body>
+
+	<div>
+		<h1>QAnimDrawer Help</h1>
+		
+		<h3>Create a skeleton</h3>
+		
+		<p>
+		QAnimDrawer uses tree-graph to represent a skeleton made of
+		edges and nodes.
+		The tree representation gives the ability to know
+		which part depends on which node or edge (for example, when you move
+		the knee, the foot will move along).
+		</p>
+		
+		<p>To create a skeleton, you have to write an XML file.</p>
+		
+		<p>
+		It begins with the "origin" node for which you can give (x,y) coordinates :
+		</p>
+		
+		<table class="steps">
+			<tr>
+				<td>
+					<pre>
+&lt;!DOCTYPE JMskel&gt;
+&lt;QAnimDrawer&gt;
+  &lt;version&gt;0.01&lt;/version&gt;
+  &lt;skeleton&gt;
+<span class="changed">    &lt;origin x="0" y="-32" &gt;
+    &lt;/origin&gt;</span>
+  &lt;/skeleton&gt;
+&lt;/QAnimDrawer&gt;
+					</pre>
+				
+				</td>
+				<td>
+					<img src="step1.png" alt="qanimdrawer"/>
+				</td>
+			</tr>
+		</table>
+		
+		<p>
+		The "origin" node has sons, which are edges :
+		</p>
+		
+		<table class="steps">
+			<tr>
+				<td>
+					<pre>
+&lt;!DOCTYPE JMskel&gt;
+&lt;QAnimDrawer&gt;
+  &lt;version&gt;0.01&lt;/version&gt;
+  &lt;skeleton&gt;
+    &lt;origin x="0" y="-32" &gt;
+<span class="changed">      &lt;sons&gt;
+        &lt;edge z="10" name="edge1" &gt;
+          &lt;positions&gt;
+            &lt;pos ang="0" name="pos1" len="30" /&gt;
+          &lt;/positions&gt;
+          &lt;sons/&gt;
+        &lt;/edge&gt;
+      &lt;/sons&gt;</span>
+    &lt;/origin&gt;
+  &lt;/skeleton&gt;
+&lt;/QAnimDrawer&gt;
+					</pre>
+				
+				</td>
+				<td>
+					<img src="step2.png" alt="qanimdrawer"/>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<p>
+		The edges have names (to help creating and debugging), and z which represents the order of drawing (the biggest z will be in foreground).
+		They can also have several positions, each of them recording an angle and a length. The position name is used for synchronizing the different parts
+		of the skeleton.
+		</p>
+		<p>
+		And the edges have their edge sons:
+		</p>
+		
+		<table class="steps">
+			<tr>
+				<td>
+					<pre>
+&lt;!DOCTYPE JMskel&gt;
+&lt;QAnimDrawer&gt;
+  &lt;version&gt;0.01&lt;/version&gt;
+  &lt;skeleton&gt;
+    &lt;origin x="0" y="-32" &gt;
+      &lt;sons&gt;
+        &lt;edge z="10" name="edge1" &gt;
+          &lt;positions&gt;
+            &lt;pos ang="0" name="pos1" len="30" /&gt;
+          &lt;/positions&gt;
+          &lt;sons&gt;
+<span class="changed">            &lt;edge z="10" name="edge2" &gt;
+              &lt;positions&gt;
+                &lt;pos ang="0" name="pos1" len="50" /&gt;
+              &lt;/positions&gt;
+              &lt;sons&gt;
+                &lt;edge z="10" name="edge3" &gt;
+                  &lt;positions&gt;
+                    &lt;pos ang="0" name="pos1" len="20" /&gt;
+                  &lt;/positions&gt;
+                  &lt;sons&gt;
+                  &lt;/sons&gt;
+                &lt;/edge&gt;
+              &lt;/sons&gt;
+            &lt;/edge&gt;</span>
+          &lt;/sons&gt;
+        &lt;/edge&gt;
+      &lt;/sons&gt;
+    &lt;/origin&gt;
+  &lt;/skeleton&gt;
+&lt;/QAnimDrawer&gt;
+					</pre>
+				
+				</td>
+				<td>
+					<img src="step3.png" alt="qanimdrawer"/>
+				</td>
+			</tr>
+		</table>
+		
+		<p>
+		Then we can add pictures to the edges (one picture per position).
+		</p>
+		
+		<table class="steps">
+			<tr>
+				<td>
+					<pre>
+&lt;!DOCTYPE JMskel&gt;
+&lt;QAnimDrawer&gt;
+  &lt;version&gt;0.01&lt;/version&gt;
+  &lt;skeleton&gt;
+    &lt;origin x="0" y="-32" &gt;
+      &lt;sons&gt;
+        &lt;edge z="10" name="edge1" &gt;
+          &lt;positions&gt;
+            &lt;pos ang="0" name="pos1" len="30" /&gt;
+          &lt;/positions&gt;
+          &lt;sons&gt;
+            &lt;edge z="10" name="edge2" &gt;
+              &lt;positions&gt;
+                &lt;pos ang="0" name="pos1" len="50" /&gt;
+              &lt;/positions&gt;
+              &lt;sons&gt;
+                &lt;edge z="10" name="edge3" &gt;
+                  &lt;positions&gt;
+<span class="changed">                    &lt;pos sym="false" ang="0" name="pos1" img="hand.png" len="20" /&gt;</span>
+                  &lt;/positions&gt;
+                  &lt;sons&gt;
+                  &lt;/sons&gt;
+                &lt;/edge&gt;
+              &lt;/sons&gt;
+            &lt;/edge&gt;
+          &lt;/sons&gt;
+        &lt;/edge&gt;
+      &lt;/sons&gt;
+    &lt;/origin&gt;
+  &lt;/skeleton&gt;
+&lt;/QAnimDrawer&gt;
+					</pre>
+				
+				</td>
+				<td>
+					<img src="step4.png" alt="qanimdrawer"/>
+				</td>
+			</tr>
+		</table>
+		
+		<p>We add pictures everywhere:</p>
+		
+		<table class="steps">
+			<tr>
+				<td><img class="center" src="step5.png" alt="qanimdrawer"/></td>
+			</tr>
+		</table>
+		
+		<p>And the positions can be modified by QAnimDrawer!</p>
+		
+		<table class="steps">
+			<tr>
+				<td><img class="center" src="step6.png" alt="qanimdrawer"/></td>
+			</tr>
+		</table>
+		
+		<p>
+		Each edge can have several sons, this is an n-ary tree.
+		</p>
+		
+		<table class="steps">
+			<tr>
+				<td><img class="center" src="empty.png" alt="qanimdrawer"/></td>
+				<td><img class="center" src="full.png" alt="qanimdrawer"/></td>
+			</tr>
+		</table>
+		
+		<hr/>
+		
+		
+		
+		
+		<img src="image.png" alt="qanimdrawer"/>
+
+		
+		<img src="qanimdrawer.png" alt="qanimdrawer"/>
+		
+		
+		
+	</div>
+
+</body>
+
+</html>

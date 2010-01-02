@@ -11,7 +11,7 @@ Q_OBJECT
  public:
   GraphViewJM(QGraphicsScene * scene, QWidget * parent = 0);
  public slots:
-  void ask_shot(QString filename="img.jpg");
+  void ask_shot(QString filename="img.png");
  private:
 
 		

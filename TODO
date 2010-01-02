@@ -1,5 +1,6 @@
 Urgent :
 * Faire que l'animation touche bien les longueurs et les images aussi
+* Mettre un fond transparent dans les png ?
 
 Petits :
 * quand on déplace un point, choix si ça affecte les descendants ou pas
@@ -12,6 +13,7 @@ Petits :
 * faire de la doc (surtout pour la création d'images)
 
 Gros :
+* gérer les dossiers de travail (images par rapport au XML)
 * pouvoir donner une liste d'animations pour pouvoir tout exporter (dans le XML)
 * Ecrire un fichier XML avec les animations : http://www.digitalfanatics.org/projects/qt_tutorial/chapter09.html
 * Gérer le Z ? => nécessaire

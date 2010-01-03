@@ -623,6 +623,55 @@
          style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none;marker-end:none"
          transform="matrix(0.8,0,0,0.8,5.92,0.8)" />
     </marker>
+    <inkscape:perspective
+       id="perspective3959"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3981"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4006"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4031"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4075"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4097"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4122"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -632,8 +681,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="480.41327"
-     inkscape:cy="350.05266"
+     inkscape:cx="350.55596"
+     inkscape:cy="357.0393"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -942,8 +991,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <image
-       y="758.50507"
-       x="360.57144"
+       y="880.73352"
+       x="32.271873"
        id="image5115"
        height="79.85714"
        width="239.57143"
@@ -953,28 +1002,28 @@
        inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-mid:none;marker-end:url(#Arrow1Lend)"
-       d="m 438.57143,743.79075 83.57143,0"
+       d="m 110.27186,866.01921 83.57143,0"
        id="path5119"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-mid:none;marker-end:url(#Arrow1Lend)"
-       d="m 617.85715,760.21933 0,77.14285"
+       d="m 289.55758,882.44779 0,77.14285"
        id="path5121"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-mid:none;marker-end:url(#Arrow1Lend)"
-       d="m 521.42858,853.07647 78.57143,0"
+       d="m 193.12901,975.30493 78.57143,0"
        id="path5123"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-mid:none;marker-end:url(#Arrow1Lend)"
-       d="m 362.85715,857.36218 75.71428,0"
+       d="m 34.557577,979.59064 75.714283,0"
        id="path5125"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
        inkscape:export-xdpi="90"
@@ -982,61 +1031,168 @@
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="447.85715"
-       y="732.36218"
+       x="119.55755"
+       y="854.59064"
        id="text5895"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan5897"
-         x="447.85715"
-         y="732.36218">len</tspan></text>
+         x="119.55755"
+         y="854.59064">len</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="627.14288"
-       y="808.07648"
+       x="298.84332"
+       y="930.30493"
        id="text5899"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan5901"
-         x="627.14288"
-         y="808.07648">h</tspan></text>
+         x="298.84332"
+         y="930.30493">h</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="550.77844"
-       y="888.98608"
+       x="222.47888"
+       y="1011.2145"
        id="text5899-3"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan5901-8"
-         x="550.77844"
-         y="888.98608">h</tspan></text>
+         x="222.47888"
+         y="1011.2145">h</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="390.77847"
-       y="894.70038"
+       x="62.478905"
+       y="1016.9288"
        id="text5899-8"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan5901-6"
-         x="390.77847"
-         y="894.70038">h</tspan></text>
+         x="62.478905"
+         y="1016.9288">h</tspan></text>
     <path
-       style="fill:#0000a1;stroke:#0017ca;stroke-width:2.545;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#DotL);marker-end:url(#DotL);fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="m 439.65674,798.98049 81.80803,0"
+       style="fill:#0000a1;fill-opacity:1;stroke:#0017ca;stroke-width:2.54500008;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#DotL);marker-end:url(#DotL)"
+       d="m 111.35717,921.20895 81.80803,0"
        id="path2818-2-9-1"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/image.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2943"
+       width="92.85714"
+       height="36.42857"
+       x="77.142853"
+       y="628.43365"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2943-3"
+       width="92.85714"
+       height="36.42857"
+       x="168.57143"
+       y="628.43359"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2943-8"
+       width="92.85714"
+       height="36.42857"
+       x="80.714287"
+       y="729.86224"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2943-3-4"
+       width="92.85714"
+       height="36.42857"
+       x="-277.14325"
+       y="698.08527"
+       inkscape:transform-center-x="-37.848307"
+       transform="matrix(0.82793175,-0.56082887,0.56082887,0.82793175,0,0)"
+       inkscape:transform-center-y="-25.637873"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2943-84"
+       width="92.85714"
+       height="36.42857"
+       x="64.642868"
+       y="567.36218"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect2943-3-8"
+       width="92.85714"
+       height="36.42857"
+       x="179.99998"
+       y="567.7193"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 321.67242,566.25254 0,36.4375 91.28125,0 c 0.80819,0.10964 1.63049,0.1875 2.46875,0.1875 10.05915,0 18.21875,-8.1596 18.21875,-18.21875 0,-10.05915 -8.1596,-18.21875 -18.21875,-18.21875 -0.30363,0 -0.60626,0.0166 -0.90625,0.0312 l 0,-0.21875 -92.84375,0 z"
+       id="rect2943-84-2"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 554.99973,565.33893 0,36.4375 -91.28125,0 c -0.80819,0.10964 -1.63049,0.1875 -2.46875,0.1875 -10.05915,0 -18.21875,-8.1596 -18.21875,-18.21875 0,-10.05915 8.1596,-18.21875 18.21875,-18.21875 0.30363,0 0.60626,0.0166 0.90625,0.0312 l 0,-0.21875 92.84375,0 z"
+       id="rect2943-84-2-5"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 341.72896,622.53016 0,36.4375 91.28125,0 c 0.80819,0.10964 1.63049,0.1875 2.46875,0.1875 10.05915,0 18.21875,-8.1596 18.21875,-18.21875 0,-10.05915 -8.1596,-18.21875 -18.21875,-18.21875 -0.30363,0 -0.60626,0.0166 -0.90625,0.0312 l 0,-0.21875 -92.84375,0 z"
+       id="rect2943-84-2-3"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 531.61971,622.37416 0,36.4375 -91.28125,0 c -0.80819,0.10964 -1.63049,0.1875 -2.46875,0.1875 -10.05915,0 -18.21875,-8.1596 -18.21875,-18.21875 0,-10.05915 8.1596,-18.21875 18.21875,-18.21875 0.30363,0 0.60626,0.0166 0.90625,0.0312 l 0,-0.21875 92.84375,0 z"
+       id="rect2943-84-2-5-9"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 346.6646,732.19979 0,36.4375 91.28125,0 c 0.80819,0.10964 1.63049,0.1875 2.46875,0.1875 10.05915,0 18.21875,-8.1596 18.21875,-18.21875 0,-10.05915 -8.1596,-18.21875 -18.21875,-18.21875 -0.30363,0 -0.60626,0.0166 -0.90625,0.0312 l 0,-0.21875 -92.84375,0 z"
+       id="rect2943-84-2-3-4"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#4c00a1;fill-opacity:1;stroke:#0d905a;stroke-width:2.54500008;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 503.66218,675.67059 22.90964,28.33443 -70.98187,57.39199 c -0.55953,0.5934 -1.15001,1.17096 -1.80186,1.698 -7.82216,6.32457 -19.29746,5.10978 -25.62203,-2.71239 -6.32457,-7.82217 -5.10978,-19.29747 2.71239,-25.62204 0.23611,-0.1909 0.48188,-0.36827 0.72433,-0.54553 l -0.13753,-0.1701 72.1969,-58.3744 z"
+       id="rect2943-84-2-5-9-9"
+       inkscape:transform-center-x="-34.926164"
+       inkscape:transform-center-y="-28.94812"
+       inkscape:export-filename="/home/roa/Desktop/QAnimDrawer/doc/joins2.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>

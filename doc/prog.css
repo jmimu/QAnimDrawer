@@ -33,6 +33,32 @@ table.steps /* Le tableau en lui-même */
    width:100%;
 }
 
+td
+{
+	border-width:1px;
+	border-style:solid; 
+	border-color: #553A59;
+	/*margin: auto; */
+	padding: 5px;
+	width:50%;
+}
+
+table.navigation
+{
+   border: 0px ;
+   width:100%;
+}
+td.navigation1
+{
+	border-width:0px;
+	text-align: left; 
+}
+td.navigation2
+{
+	border-width:0px;
+	text-align: right; 
+}
+
 caption
 {
 	text-align: center; 
@@ -46,15 +72,7 @@ caption
 
 }
 
-td
-{
-	border-width:1px;
-	border-style:solid; 
-	border-color: #553A59;
-	/*margin: auto; */
-	padding: 5px;
-	width:50%;
-}
+
 p
 {
 	margin-left: 20px;
@@ -63,6 +81,7 @@ p
 	font-size: 18px;
 	text-align: justify; 
 }
+
 dt
 {
 	font-family: Arial, "Arial Black","Times New Roman", Verdana, serif;

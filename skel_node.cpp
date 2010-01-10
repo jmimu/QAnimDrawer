@@ -14,16 +14,18 @@ Skel_Node::Skel_Node(double x,double y,Skel_Edge *edge)
 /**
    recursive drawing function
 */
-void Skel_Node::draw_recursive(QGraphicsScene *scene)
+void Skel_Node::draw_recursive(QGraphicsScene *scene, bool draw_lines)
 {
   QPen pen(Qt::blue, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
   std::list<Skel_Edge*>::iterator it;
   for( it = from_of()->begin(); it != from_of()->end(); ++it ) {
-    if (!(*it)->got_image()){    
-      QLine ligne((*it)->from()->x(),(*it)->from()->y(),(*it)->to()->x(),(*it)->to()->y());
-      scene->addLine(ligne, pen);
+    if (draw_lines) {
+      QLine line((*it)->from()->x(),(*it)->from()->y(),(*it)->to()->x(),(*it)->to()->y());
+      QGraphicsItem *line_item = scene->addLine(line, pen);
+      line_item->setZValue(10000);
       //std::cout<<"add a line !"<<std::endl;
-    }else{
+    }
+    if ((*it)->got_image()){    
       QGraphicsItem *item;
       item = scene->addPixmap(*((*it)->image()));
 
@@ -42,7 +44,7 @@ void Skel_Node::draw_recursive(QGraphicsScene *scene)
 
     }
      
-    if ((*it)->to() != NULL) (*it)->to()->draw_recursive(scene);
+    if ((*it)->to() != NULL) (*it)->to()->draw_recursive(scene,draw_lines);
   }
 }
 

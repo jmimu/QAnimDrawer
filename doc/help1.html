@@ -23,17 +23,17 @@
 		<h3>Create a skeleton</h3>
 		
 		<p>
-		QAnimDrawer uses tree-graph to represent a skeleton made of
+		QAnimDrawer uses a tree graph to represent a skeleton made of
 		edges and nodes.
 		The tree representation gives the ability to know
-		which part depends on which node or edge (for example, when you move
+		which part depends on which node or edge (for example, when moving
 		the knee, the foot will move along).
 		</p>
 		
-		<p>To create a skeleton, you have to write an XML file.</p>
+		<p>In order to create a skeleton, an XML file is needed.</p>
 		
 		<p>
-		It begins with the "origin" node for which you can give (x,y) coordinates :
+		The Tree begins with the "origin" node for which has (x,y) coordinates :
 		</p>
 		
 		<table class="steps">
@@ -92,12 +92,12 @@
 		
 		
 		<p>
-		The edges have names (to help creating and debugging), and z which represents the order of drawing (the biggest z will be in foreground).
+		The edges have names (to help creating and debugging the XML file), and a "z" which represents the order of drawing (the biggest z will be in foreground).
 		They can also have several positions, each of them recording an angle and a length. The position name is used for synchronizing the different parts
 		of the skeleton.
 		</p>
 		<p>
-		And the edges have their edge sons:
+		And the edges have their edge-sons:
 		</p>
 		
 		<table class="steps">
@@ -145,8 +145,9 @@
 		</table>
 		
 		<p>
-		Then we can add pictures to the edges (one picture per position).
+		Every edge can have one image per position.
 		</p>
+		<p>Each image has a filename "img" and "sym" (true if flipped vertically, false if not).</p>
 		
 		<table class="steps">
 			<tr>
@@ -192,17 +193,16 @@
 			</tr>
 		</table>
 		
-		<p>Images are described with the filename (img), and if it is flipped vertically (sym).</p>
-		
-		<p>We add pictures everywhere:</p>
-		
+		<!--<p>We add pictures everywhere:</p>-->
+		<br/>
 		<table class="steps">
 			<tr>
 				<td><img class="center" src="step5.png" alt="step5_qanimdrawer"/></td>
 			</tr>
 		</table>
 		
-		<p>And the positions can be modified by QAnimDrawer!</p>
+		<!--<p>And the positions can be modified by QAnimDrawer!</p>-->
+		<br/>
 		
 		<table class="steps">
 			<tr>
@@ -211,7 +211,7 @@
 		</table>
 		
 		<p>
-		Each edge can have several sons, this is an n-ary tree.
+		Remember that each edge can have several sons, the skeleton is an n-ary tree.
 		</p>
 		
 		<table class="steps">

@@ -18,9 +18,9 @@ void Skeleton::update_nodes_list()
   //std::cout<<m_nodes_list.size()<<" nodes found"<<std::endl;
 }
 
-void Skeleton::draw(QGraphicsScene *scene)
+void Skeleton::draw(QGraphicsScene *scene, bool draw_lines)
 {
-  m_origin.draw_recursive(scene);
+  m_origin.draw_recursive(scene,draw_lines);
 }
 
 bool Skeleton::set_to_position(QString name)

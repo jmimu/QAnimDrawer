@@ -25,7 +25,7 @@ public:
     
     bool load(QString filename);
     bool save(QString filename);
-    void draw(QGraphicsScene *scene);
+    void draw(QGraphicsScene *scene, bool draw_lines=true);
     void update_nodes_list();
     std::list <Skel_Node *> * get_nodes_list(){return &m_nodes_list;}
     bool set_to_position(QString name);

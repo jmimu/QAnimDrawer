@@ -32,7 +32,7 @@ void GraphSceneJM::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     //node_selection->to_of()->set_length_delta(mouseEvent->scenePos().y()-y_begin_right_click);
   }
 
-  draw_skel();
+  draw_skel(true);
 }
 
 
@@ -71,14 +71,14 @@ void GraphSceneJM::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
       //std::cout<<"Selection !"<<std::endl;
     }
   }
-  draw_skel();
+  draw_skel(true);
 }
 
-void GraphSceneJM::draw_skel()
+void GraphSceneJM::draw_skel(bool draw_lines)
 {
   clear ();
-  skel.draw(this);
-  if (node_selection != NULL){
+  skel.draw(this,draw_lines);
+  if (draw_lines && (node_selection != NULL)){
     //std::cout<<"sel: "<<node_selection->x()<<" "<<node_selection->y()<<std::endl;
     QPen pen(Qt::green, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QGraphicsEllipseItem * circle = addEllipse(node_selection->x()-10,node_selection->y()-10 , 20, 20, pen);

@@ -11,7 +11,7 @@ class GraphSceneJM: public QGraphicsScene
     
   public:
   GraphSceneJM(QString filename,QWidget * parent);
-    void draw_skel();
+    void draw_skel(bool draw_lines=true);
     Skeleton * get_skel(){return &skel;}
   
   protected:

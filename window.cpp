@@ -130,7 +130,7 @@ void Window::goto_pos()//begin animation
 {
   std::cout<<"Animation to position: "<<m_destpos_list->currentText().toStdString()<<std::endl;
   scene->get_skel()->set_origin_dest_pos(m_pos_list->currentText(),m_destpos_list->currentText());
-  scene->draw_skel();
+  scene->draw_skel(false);
   timer->start(TIMER_TIME);
   run_animation=true;
   anim_time=0.0;
@@ -157,7 +157,7 @@ void Window::timer_timeout()
 
     run_animation=anim_time<1.0;
 
-    scene->draw_skel();
+    scene->draw_skel(false);
     //save img
     if (m_animation_number>0) {
       m_animation_number+=1;

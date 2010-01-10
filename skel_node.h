@@ -20,7 +20,7 @@ public:
   double y(){return m_y;}
   void add_edge_from(Skel_Edge *edge){m_from_of.push_back(edge);}
   std::list<Skel_Edge *> * from_of(){return &m_from_of;}
-  void draw_recursive(QGraphicsScene *scene);
+  void draw_recursive(QGraphicsScene *scene, bool draw_lines=true);
 
   Skel_Edge * to_of(){return m_to_of;}
   void get_nodes_recursive(std::list <Skel_Node *> * nodes_list);

@@ -1,0 +1,70 @@
+<!DOCTYPE JMskel>
+<QAnimDrawer>
+ <version>0.01</version>
+ <skeleton>
+  <origin x="0" y="0" >
+   <sons>
+    <edge z="10" name="body" >
+     <positions>
+      <pos sym="false" ang="-90" name="ini" img="data/ping1/body.png" len="42" />
+      <pos sym="false" ang="-90" name="ini2" img="data/ping1/body.png" len="42" />
+     </positions>
+     <sons>
+      <edge z="9" name="head" >
+       <positions>
+        <pos sym="false" ang="180" name="ini" img="data/ping1/head.png" len="20" />
+        <pos sym="false" ang="180" name="ini2" img="data/ping1/head.png" len="20" />
+       </positions>
+       <sons/>
+      </edge>
+     </sons>
+    </edge>
+    <edge z="12" name="pre_arm" >
+     <positions>
+      <pos sym="false" ang="-75" name="ini" img="" len="28" />
+      <pos sym="true" ang="-75" name="ini2" img="" len="28" />
+     </positions>
+     <sons>
+      <edge z="12" name="arm" >
+       <positions>
+        <pos sym="false" ang="90" name="ini" img="data/ping1/arm.png" len="18" />
+        <pos sym="false" ang="40" name="ini2" img="data/ping1/arm.png" len="18" />
+       </positions>
+       <sons/>
+      </edge>
+     </sons>
+    </edge>
+    <edge z="5" name="pre_foot_r" >
+     <positions>
+      <pos sym="false" ang="180" name="ini" img="" len="18" />
+      <pos sym="true" ang="180" name="ini2" img="" len="18" />
+     </positions>
+     <sons>
+      <edge z="5" name="foot_r" >
+       <positions>
+        <pos sym="false" ang="180" name="ini" img="data/ping1/foot_r.png" len="6" />
+        <pos sym="false" ang="180" name="ini2" img="data/ping1/foot_r.png" len="6" />
+       </positions>
+       <sons/>
+      </edge>
+     </sons>
+    </edge>
+    <edge z="5" name="pre_foot_l" >
+     <positions>
+      <pos sym="false" ang="170" name="ini" img="" len="15" />
+      <pos sym="true" ang="170" name="ini2" img="" len="15" />
+     </positions>
+     <sons>
+      <edge z="5" name="foot_l" >
+       <positions>
+        <pos sym="false" ang="180" name="ini" img="data/ping1/foot_l.png" len="7" />
+        <pos sym="false" ang="180" name="ini2" img="data/ping1/foot_l.png" len="7" />
+       </positions>
+       <sons/>
+      </edge>
+     </sons>
+    </edge>
+   </sons>
+  </origin>
+ </skeleton>
+</QAnimDrawer>
